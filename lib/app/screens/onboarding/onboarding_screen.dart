@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:travel_wallet/app/core/widgtes/widgets.dart';
 import 'package:travel_wallet/l10n/app_localizations.dart';
 
 import '../../core/constants/constants.dart';
 import '../../core/extends/extends.dart';
+import '../../core/routes/routes.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -71,7 +73,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             delay: const Duration(milliseconds: 900),
             child: Padding(
               padding: .only(left: 12, right: 12),
-              child: CustomButton(title: localizations.getStarted, onPressed: () {}),
+              child: CustomButton(
+                title: localizations.getStarted,
+                onPressed: () => context.go(AppRoutes.home),
+              ),
             ),
           ),
         ],
