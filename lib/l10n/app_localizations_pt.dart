@@ -14,4 +14,7 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get onboardingDescription =>
       'Organize seu orçamento antes mesmo de fazer as malas e acompanhe todos os seus gastos em um só lugar.';
+
+  @override
+  String get getStarted => 'Começar agora';
 }

@@ -109,6 +109,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Organize your budget before you even pack your bags and keep track of every expense in one place.'**
   String get onboardingDescription;
+
+  /// No description provided for @getStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Start now'**
+  String get getStarted;
 }
 
 class _AppLocalizationsDelegate

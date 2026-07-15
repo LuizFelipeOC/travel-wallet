@@ -1,5 +1,6 @@
 {
   "@@locale": "en",
   "onboardingTitle": "Plan your trip with peace of mind",
-  "onboardingDescription": "Organize your budget before you even pack your bags and keep track of every expense in one place."
+  "onboardingDescription": "Organize your budget before you even pack your bags and keep track of every expense in one place.",
+  "getStarted": "Start now"
 }

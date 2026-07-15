@@ -19,6 +19,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     final double screenWidth = context.width;
 
     final AppLocalizations localizations = AppLocalizations.of(context)!;
+    final TextTheme textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
       body: Column(
@@ -26,32 +27,51 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         children: [
           Center(
             child: Column(
+              mainAxisAlignment: .center,
               children: [
-                AppSvg(
-                  assetName: Appimages.travelers,
-                  assetsType: AssetsType.asset,
-                  height: screenHeight * 0.2,
-                  width: screenWidth * 0.2,
+                FadeIn(
+                  delay: const Duration(milliseconds: 750),
+                  child: AppSvg(
+                    assetName: Appimages.travelers,
+                    assetsType: AssetsType.asset,
+                    height: screenHeight * 0.26,
+                    width: screenWidth * 0.26,
+                  ),
                 ),
-                SizedBox(height: screenHeight * 0.02),
-                Column(
-                  crossAxisAlignment: .center,
-                  mainAxisAlignment: .center,
-                  children: [
-                    Text(
-                      localizations.onboardingTitle,
-                      style: Theme.of(context).textTheme.headlineSmall,
-                      textAlign: .center,
+                SizedBox(height: screenHeight * 0.04),
+                FadeIn(
+                  delay: const Duration(milliseconds: 800),
+                  child: Padding(
+                    padding: .only(left: 12, right: 12),
+                    child: Column(
+                      crossAxisAlignment: .center,
+                      mainAxisAlignment: .center,
+                      children: [
+                        Text(
+                          localizations.onboardingTitle,
+                          style: textTheme.headlineSmall,
+                          textAlign: .center,
+                        ),
+                        SizedBox(height: screenHeight * 0.01),
+                        Text(
+                          localizations.onboardingDescription,
+                          style: textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
+                          textAlign: .center,
+                        ),
+                      ],
                     ),
-                    SizedBox(height: screenHeight * 0.01),
-                    Text(
-                      localizations.onboardingDescription,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                      textAlign: .center,
-                    ),
-                  ],
+                  ),
                 ),
               ],
+            ),
+          ),
+
+          SizedBox(height: screenHeight * 0.08),
+          FadeIn(
+            delay: const Duration(milliseconds: 900),
+            child: Padding(
+              padding: .only(left: 12, right: 12),
+              child: CustomButton(title: localizations.getStarted, onPressed: () {}),
             ),
           ),
         ],
