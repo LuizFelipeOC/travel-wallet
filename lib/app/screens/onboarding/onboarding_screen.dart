@@ -22,7 +22,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: .center,
         children: [
           Center(
             child: Column(
@@ -35,19 +35,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
                 SizedBox(height: screenHeight * 0.02),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: .center,
+                  mainAxisAlignment: .center,
                   children: [
                     Text(
                       localizations.onboardingTitle,
                       style: Theme.of(context).textTheme.headlineSmall,
-                      textAlign: TextAlign.center,
+                      textAlign: .center,
                     ),
                     SizedBox(height: screenHeight * 0.01),
                     Text(
                       localizations.onboardingDescription,
                       style: Theme.of(context).textTheme.bodyMedium,
-                      textAlign: TextAlign.center,
+                      textAlign: .center,
                     ),
                   ],
                 ),
