@@ -75,7 +75,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               padding: .only(left: 12, right: 12),
               child: CustomButton(
                 title: localizations.getStarted,
-                onPressed: () => context.go(AppRoutes.home),
+                onPressed: () => context.go(AppRoutes.travelerPlannerForm),
               ),
             ),
           ),
