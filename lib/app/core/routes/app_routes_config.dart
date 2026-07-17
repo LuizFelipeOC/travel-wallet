@@ -1,8 +1,7 @@
 import 'package:go_router/go_router.dart';
-import 'package:travel_wallet/app/screens/home/home_screen.dart';
-import 'package:travel_wallet/app/screens/screens.dart';
 import 'package:flutter/material.dart';
 
+import '../../screens/screens.dart';
 import 'routes.dart';
 
 final GoRouter appRouterConfig = GoRouter(
@@ -16,6 +15,11 @@ final GoRouter appRouterConfig = GoRouter(
       path: AppRoutes.home,
       pageBuilder: (context, state) =>
           _fadeSlidePage(key: state.pageKey, child: const HomeScreen()),
+    ),
+    GoRoute(
+      path: AppRoutes.travelerPlannerForm,
+      pageBuilder: (context, state) =>
+          _fadeSlidePage(key: state.pageKey, child: const TravelerPlannerFormScreen()),
     ),
   ],
 );
