@@ -11,7 +11,40 @@ final class AppThemes {
     useMaterial3: false,
     textTheme: textTheme(),
     elevatedButtonTheme: elevatedButtonTheme(),
+    inputDecorationTheme: inputDecorationTheme(),
+    textButtonTheme: textButtonTheme(),
   );
+
+  static TextButtonThemeData textButtonTheme() {
+    return TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: AppColors.primaryColor,
+        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+      ),
+    );
+  }
+
+  static InputDecorationTheme inputDecorationTheme() {
+    return InputDecorationTheme(
+      filled: true,
+      fillColor: Colors.white,
+      contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+      labelStyle: const TextStyle(color: Colors.black87),
+      suffixIconColor: AppColors.primaryColor,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: Colors.grey.shade300),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: Colors.grey.shade300),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: AppColors.primaryColor, width: 2),
+      ),
+    );
+  }
 
   static ElevatedButtonThemeData elevatedButtonTheme() {
     return ElevatedButtonThemeData(
