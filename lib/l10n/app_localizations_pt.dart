@@ -17,4 +17,25 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get getStarted => 'Começar agora';
+
+  @override
+  String get travler_form_title => 'Planeje';
+
+  @override
+  String get travler_form_subtitle => 'Organize suas próximas viagens';
+
+  @override
+  String get travler_form_create_before => 'Começar sem criar viagem';
+
+  @override
+  String get travler_form_name => 'Nome da viagem';
+
+  @override
+  String get travler_form_budget => 'Orçamento (R\$)';
+
+  @override
+  String get travler_form_roundtrip => 'Ida e volta';
+
+  @override
+  String get travler_form_save => 'Salvar';
 }

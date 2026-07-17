@@ -2,5 +2,13 @@
   "@@locale": "en",
   "onboardingTitle": "Plan your trip with peace of mind",
   "onboardingDescription": "Organize your budget before you even pack your bags and keep track of every expense in one place.",
-  "getStarted": "Start now"
+  "getStarted": "Start now",
+  "travler_form_title": "Planner",
+  "travler_form_subtitle": "Organize your upcoming trips",
+  "travler_form_create_before": "Start without creating a trip"
+  ,
+  "travler_form_name": "Trip name",
+  "travler_form_budget": "Budget (R$)",
+  "travler_form_roundtrip": "Roundtrip",
+  "travler_form_save": "Save"
 }

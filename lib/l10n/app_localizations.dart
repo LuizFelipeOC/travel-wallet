@@ -115,6 +115,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Start now'**
   String get getStarted;
+
+  /// No description provided for @travler_form_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Planner'**
+  String get travler_form_title;
+
+  /// No description provided for @travler_form_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Organize your upcoming trips'**
+  String get travler_form_subtitle;
+
+  /// No description provided for @travler_form_create_before.
+  ///
+  /// In en, this message translates to:
+  /// **'Start without creating a trip'**
+  String get travler_form_create_before;
+
+  /// No description provided for @travler_form_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip name'**
+  String get travler_form_name;
+
+  /// No description provided for @travler_form_budget.
+  ///
+  /// In en, this message translates to:
+  /// **'Budget (R\$)'**
+  String get travler_form_budget;
+
+  /// No description provided for @travler_form_roundtrip.
+  ///
+  /// In en, this message translates to:
+  /// **'Roundtrip'**
+  String get travler_form_roundtrip;
+
+  /// No description provided for @travler_form_save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get travler_form_save;
 }
 
 class _AppLocalizationsDelegate

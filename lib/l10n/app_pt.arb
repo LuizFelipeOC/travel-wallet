@@ -2,5 +2,13 @@
   "@@locale": "pt",
   "onboardingTitle": "Planeje sua viagem com tranquilidade",
   "onboardingDescription": "Organize seu orçamento antes mesmo de fazer as malas e acompanhe todos os seus gastos em um só lugar.",
-  "getStarted": "Começar agora"
+  "getStarted": "Começar agora",
+  "travler_form_title": "Planeje",
+  "travler_form_subtitle": "Organize suas próximas viagens",
+  "travler_form_create_before": "Começar sem criar viagem"
+  ,
+  "travler_form_name": "Nome da viagem",
+  "travler_form_budget": "Orçamento (R$)",
+  "travler_form_roundtrip": "Ida e volta",
+  "travler_form_save": "Salvar"
 }
