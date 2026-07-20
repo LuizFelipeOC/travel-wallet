@@ -57,8 +57,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         SizedBox(height: screenHeight * 0.01),
                         Text(
                           localizations.onboardingDescription,
-                          style: textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
                           textAlign: .center,
+                          style: textTheme.bodyMedium,
                         ),
                       ],
                     ),
