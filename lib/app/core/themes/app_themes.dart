@@ -13,6 +13,11 @@ final class AppThemes {
     elevatedButtonTheme: elevatedButtonTheme(),
     inputDecorationTheme: inputDecorationTheme(),
     textButtonTheme: textButtonTheme(),
+    iconButtonTheme: iconButtonTheme(),
+    iconTheme: iconThemeData(),
+    appBarTheme: appBarTheme(),
+    textSelectionTheme: textSelectionTheme(),
+    colorScheme: ColorScheme.fromSeed(seedColor: AppColors.amber300, brightness: Brightness.light),
   );
 
   static ThemeData get darkTheme => ThemeData(
@@ -23,15 +28,20 @@ final class AppThemes {
     useMaterial3: false,
     textTheme: darkTextTheme(),
     elevatedButtonTheme: elevatedButtonTheme(),
-    inputDecorationTheme: inputDecorationTheme(),
+    inputDecorationTheme: darkInputDecorationTheme(),
     textButtonTheme: textButtonTheme(),
+    iconButtonTheme: iconButtonTheme(),
+    iconTheme: iconThemeData(),
+    appBarTheme: appBarTheme(),
+    textSelectionTheme: textSelectionTheme(),
+    colorScheme: ColorScheme.fromSeed(seedColor: AppColors.amber300, brightness: Brightness.dark),
   );
 
   static TextButtonThemeData textButtonTheme() {
     return TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: AppColors.amber300,
-        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
       ),
     );
   }
@@ -50,6 +60,28 @@ final class AppThemes {
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: BorderSide(color: Colors.grey.shade300),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: AppColors.amber300, width: 2),
+      ),
+    );
+  }
+
+  static InputDecorationTheme darkInputDecorationTheme() {
+    return InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.neutral800,
+      contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
+      labelStyle: const TextStyle(color: Colors.white),
+      suffixIconColor: AppColors.amber300,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: Colors.grey.shade700),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: Colors.grey.shade700),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
@@ -108,6 +140,38 @@ final class AppThemes {
         wordSpacing: 0.5,
         fontWeight: FontWeight.normal,
       ),
+    );
+  }
+
+  static IconButtonThemeData iconButtonTheme() {
+    return IconButtonThemeData(
+      style: IconButton.styleFrom(
+        foregroundColor: AppColors.amber300,
+        iconSize: 22,
+        padding: EdgeInsets.zero,
+      ),
+    );
+  }
+
+  static IconThemeData iconThemeData() {
+    return const IconThemeData(color: AppColors.amber300, size: 22);
+  }
+
+  static AppBarTheme appBarTheme() {
+    return AppBarTheme(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      iconTheme: iconThemeData(),
+      titleTextStyle: textTheme().headlineSmall,
+      toolbarTextStyle: textTheme().bodyMedium,
+    );
+  }
+
+  static TextSelectionThemeData textSelectionTheme() {
+    return const TextSelectionThemeData(
+      cursorColor: AppColors.amber300,
+      selectionColor: AppColors.amber300,
+      selectionHandleColor: AppColors.amber300,
     );
   }
 }

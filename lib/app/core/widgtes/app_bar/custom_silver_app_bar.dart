@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../constants/app_colors.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomSilverAppBar extends StatelessWidget {
   final double screenHeight;
@@ -17,59 +16,25 @@ class CustomSilverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return SliverAppBar(
       pinned: true,
       elevation: 0,
       backgroundColor: Colors.transparent,
-      expandedHeight: screenHeight * 0.16,
+      expandedHeight: screenHeight * 0.10,
       flexibleSpace: FlexibleSpaceBar(
-        background: Stack(
-          fit: StackFit.loose,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(decoration: BoxDecoration(gradient: AppColors.primaryGradient)),
-            SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      title,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-
-                    if (subtitle != null) ...[
-                      SizedBox(height: 6),
-                      Text(
-                        subtitle!,
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyMedium?.copyWith(color: Colors.white),
-                      ),
-                    ],
-                  ],
-                ),
-              ),
+            IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                context.pop();
+              },
             ),
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: -1,
-              child: Container(
-                height: 32,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(24),
-                    topRight: Radius.circular(24),
-                  ),
-                ),
-              ),
-            ),
+            Text(title, style: textTheme.bodyLarge),
           ],
         ),
       ),
