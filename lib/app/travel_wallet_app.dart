@@ -26,6 +26,7 @@ class _TravelWalletAppState extends State<TravelWalletApp> {
       ],
       supportedLocales: AppLocalizations.supportedLocales,
       theme: AppThemes.lightTheme,
+      darkTheme: AppThemes.darkTheme,
     );
   }
 }
