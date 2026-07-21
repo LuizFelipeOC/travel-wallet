@@ -157,6 +157,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save'**
   String get travler_form_save;
+
+  /// No description provided for @home_empty_list_title.
+  ///
+  /// In en, this message translates to:
+  /// **'No trips yet'**
+  String get home_empty_list_title;
+
+  /// No description provided for @home_create_new_travel.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your first trip'**
+  String get home_create_new_travel;
+
+  /// No description provided for @home_app_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Travel Wallet'**
+  String get home_app_title;
 }
 
 class _AppLocalizationsDelegate

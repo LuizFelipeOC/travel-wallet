@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../constants/constants.dart';
 
@@ -15,8 +16,9 @@ final class AppThemes {
     textButtonTheme: textButtonTheme(),
     iconButtonTheme: iconButtonTheme(),
     iconTheme: iconThemeData(),
-    appBarTheme: appBarTheme(),
+    appBarTheme: appBarTheme(Brightness.light),
     textSelectionTheme: textSelectionTheme(),
+    outlinedButtonTheme: outlinedButtonTheme(),
     colorScheme: ColorScheme.fromSeed(seedColor: AppColors.amber300, brightness: Brightness.light),
   );
 
@@ -32,8 +34,9 @@ final class AppThemes {
     textButtonTheme: textButtonTheme(),
     iconButtonTheme: iconButtonTheme(),
     iconTheme: iconThemeData(),
-    appBarTheme: appBarTheme(),
+    appBarTheme: appBarTheme(Brightness.dark),
     textSelectionTheme: textSelectionTheme(),
+    outlinedButtonTheme: outlinedButtonTheme(),
     colorScheme: ColorScheme.fromSeed(seedColor: AppColors.amber300, brightness: Brightness.dark),
   );
 
@@ -157,13 +160,18 @@ final class AppThemes {
     return const IconThemeData(color: AppColors.amber300, size: 22);
   }
 
-  static AppBarTheme appBarTheme() {
+  static AppBarTheme appBarTheme(Brightness brightness) {
+    final system = (brightness == Brightness.dark)
+        ? SystemUiOverlayStyle.light
+        : SystemUiOverlayStyle.dark;
+
     return AppBarTheme(
       backgroundColor: Colors.transparent,
       elevation: 0,
       iconTheme: iconThemeData(),
       titleTextStyle: textTheme().headlineSmall,
       toolbarTextStyle: textTheme().bodyMedium,
+      systemOverlayStyle: system,
     );
   }
 
@@ -172,6 +180,17 @@ final class AppThemes {
       cursorColor: AppColors.amber300,
       selectionColor: AppColors.amber300,
       selectionHandleColor: AppColors.amber300,
+    );
+  }
+
+  static OutlinedButtonThemeData outlinedButtonTheme() {
+    return OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        foregroundColor: AppColors.amber300,
+        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
+        side: const BorderSide(color: AppColors.amber300, width: 1.5),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
+      ),
     );
   }
 }

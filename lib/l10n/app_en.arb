@@ -11,4 +11,9 @@
   "travler_form_budget": "Budget (R$)",
   "travler_form_roundtrip": "Roundtrip",
   "travler_form_save": "Save"
+  ,
+  "home_empty_list_title": "No trips yet",
+  "home_create_new_travel": "Create your first trip"
+  ,
+  "home_app_title": "Travel Wallet"
 }

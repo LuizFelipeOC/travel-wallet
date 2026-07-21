@@ -19,7 +19,8 @@ class CustomSilverAppBar extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return SliverAppBar(
-      pinned: true,
+      pinned: false,
+      automaticallyImplyLeading: false,
       elevation: 0,
       backgroundColor: Colors.transparent,
       expandedHeight: screenHeight * 0.10,

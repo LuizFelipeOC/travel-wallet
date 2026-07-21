@@ -38,4 +38,13 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get travler_form_save => 'Salvar';
+
+  @override
+  String get home_empty_list_title => 'Ainda não há viagens';
+
+  @override
+  String get home_create_new_travel => 'Crie sua primeira viagem';
+
+  @override
+  String get home_app_title => 'Carteira de Viagem';
 }

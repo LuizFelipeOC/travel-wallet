@@ -11,4 +11,9 @@
   "travler_form_budget": "Orçamento (R$)",
   "travler_form_roundtrip": "Ida e volta",
   "travler_form_save": "Salvar"
+  ,
+  "home_empty_list_title": "Ainda não há viagens",
+  "home_create_new_travel": "Crie sua primeira viagem"
+  ,
+  "home_app_title": "Carteira de Viagem"
 }
