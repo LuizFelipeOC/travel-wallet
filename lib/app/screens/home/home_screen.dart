@@ -5,7 +5,7 @@ import 'package:travel_wallet/app/core/constants/app_images.dart';
 import '../../../l10n/app_localizations.dart';
 
 import '../../core/extends/extends.dart';
-import '../../core/routes/routes.dart';
+import '../../routers/app_routes.dart';
 import '../../core/widgtes/widgets.dart';
 
 class HomeScreen extends StatefulWidget {

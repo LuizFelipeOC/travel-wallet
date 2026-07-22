@@ -3,12 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:travel_wallet/app/core/widgtes/widgets.dart';
 import 'package:travel_wallet/l10n/app_localizations.dart';
 
-import '../../core/constants/constants.dart';
-import '../../core/di/di.dart';
-import '../../core/extends/extends.dart';
-import '../../core/routes/routes.dart';
-import 'controller/onboarding_controller.dart';
-import 'controller/onboarding_state.dart';
+import '../../../core/constants/constants.dart';
+import '../../../di/di.dart';
+import '../../../core/extends/extends.dart';
+import '../../../routers/app_routes.dart';
+import '../controller/onboarding_controller.dart';
+import '../controller/onboarding_state.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});

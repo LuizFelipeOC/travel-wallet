@@ -4,8 +4,8 @@ import 'package:travel_wallet/app/screens/traveler_planner/traveler_planner_form
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../core/extends/extends.dart';
-import '../../../core/routes/routes.dart';
 import '../../../core/widgtes/widgets.dart';
+import '../../../routers/app_routes.dart';
 
 class TravelerPlannerFormScreen extends StatefulWidget {
   final bool isFirstTimeUser;
