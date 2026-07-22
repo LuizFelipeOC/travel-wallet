@@ -3,7 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:travel_wallet/l10n/app_localizations.dart';
 
 import 'routers/app_router.dart';
-import 'themes/themes.dart';
+import 'themes/app_themes.dart';
 
 class TravelWalletApp extends StatefulWidget {
   const TravelWalletApp({super.key});
