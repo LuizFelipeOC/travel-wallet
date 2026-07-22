@@ -2,7 +2,8 @@ import 'package:get_it/get_it.dart';
 import 'package:travel_wallet/app/features/onboarding/controller/onboarding_controller.dart';
 
 import '../core/data/repositories/check_access_repository.dart';
-import '../core/infraestructure/infraestructure.dart';
+import '../core/storage/local_storage.dart';
+import '../core/storage/local_storage_interface.dart';
 
 GetIt getIt = GetIt.instance;
 
