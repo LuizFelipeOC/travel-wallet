@@ -18,8 +18,15 @@ final GoRouter appRouterConfig = GoRouter(
     ),
     GoRoute(
       path: AppRoutes.travelerPlannerForm,
-      pageBuilder: (context, state) =>
-          _fadeSlidePage(key: state.pageKey, child: const TravelerPlannerFormScreen()),
+      pageBuilder: (context, state) {
+        final data = state.extra as Map<String, dynamic>?;
+        final isFirstTimeUser = data?['isFirstTimeUser'] ?? false;
+
+        return _fadeSlidePage(
+          key: state.pageKey,
+          child: TravelerPlannerFormScreen(isFirstTimeUser: isFirstTimeUser),
+        );
+      },
     ),
   ],
 );
