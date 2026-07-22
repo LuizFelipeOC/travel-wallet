@@ -4,8 +4,11 @@ import 'package:travel_wallet/app/core/widgtes/widgets.dart';
 import 'package:travel_wallet/l10n/app_localizations.dart';
 
 import '../../core/constants/constants.dart';
+import '../../core/di/di.dart';
 import '../../core/extends/extends.dart';
 import '../../core/routes/routes.dart';
+import 'controller/onboarding_controller.dart';
+import 'controller/onboarding_state.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -15,6 +18,25 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  final controller = getIt.get<OnboardingController>();
+
+  @override
+  initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.checkHasFirstTimeUser();
+
+      controller.addListener(() {
+        final state = controller.value;
+
+        if (state is OnboardingHasFirstTimeUser && mounted && state.hasFirstTimeUser) {
+          context.go(AppRoutes.home);
+        }
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final double screenHeight = context.height;
@@ -41,42 +63,64 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ),
                 SizedBox(height: screenHeight * 0.04),
-                FadeIn(
-                  delay: const Duration(milliseconds: 800),
-                  child: Padding(
-                    padding: .only(left: 12, right: 12),
-                    child: Column(
-                      crossAxisAlignment: .center,
-                      mainAxisAlignment: .center,
-                      children: [
-                        Text(
-                          localizations.onboardingTitle,
-                          style: textTheme.headlineSmall,
-                          textAlign: .center,
-                        ),
-                        SizedBox(height: screenHeight * 0.01),
-                        Text(
-                          localizations.onboardingDescription,
-                          textAlign: .center,
-                          style: textTheme.bodyMedium,
-                        ),
-                      ],
-                    ),
-                  ),
+
+                ValueListenableBuilder(
+                  valueListenable: controller,
+                  builder: (context, state, _) {
+                    if (state is OnboardingLoading) {
+                      return const CircularProgressIndicator();
+                    }
+
+                    if (state is OnboardingHasFirstTimeUser) {
+                      if (!state.hasFirstTimeUser) {
+                        return FadeIn(
+                          delay: const Duration(milliseconds: 800),
+                          child: Padding(
+                            padding: .only(left: 12, right: 12),
+                            child: Column(
+                              crossAxisAlignment: .center,
+                              mainAxisAlignment: .center,
+                              children: [
+                                Text(
+                                  localizations.onboardingTitle,
+                                  style: textTheme.headlineSmall,
+                                  textAlign: .center,
+                                ),
+                                SizedBox(height: screenHeight * 0.01),
+                                Text(
+                                  localizations.onboardingDescription,
+                                  textAlign: .center,
+                                  style: textTheme.bodyMedium,
+                                ),
+
+                                SizedBox(height: screenHeight * 0.08),
+                                FadeIn(
+                                  delay: const Duration(milliseconds: 900),
+                                  child: Padding(
+                                    padding: .only(left: 12, right: 12),
+                                    child: CustomButton(
+                                      title: localizations.getStarted,
+                                      onPressed: () {
+                                        controller.setFirstTimeUser();
+                                        context.go(
+                                          AppRoutes.travelerPlannerForm,
+                                          extra: {'isFirstTimeUser': true},
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }
+                    }
+
+                    return const SizedBox.shrink();
+                  },
                 ),
               ],
-            ),
-          ),
-
-          SizedBox(height: screenHeight * 0.08),
-          FadeIn(
-            delay: const Duration(milliseconds: 900),
-            child: Padding(
-              padding: .only(left: 12, right: 12),
-              child: CustomButton(
-                title: localizations.getStarted,
-                onPressed: () => context.go(AppRoutes.travelerPlannerForm),
-              ),
             ),
           ),
         ],
