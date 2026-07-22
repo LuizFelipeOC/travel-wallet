@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:travel_wallet/app/screens/traveler_planner/traveler_planner_form/widgets/traveler_form.dart';
+import 'package:travel_wallet/app/features/traveler_planner/traveler_planner_form/widgets/traveler_form.dart';
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../core/extends/extends.dart';
