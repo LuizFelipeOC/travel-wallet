@@ -8,7 +8,9 @@ import '../../../core/routes/routes.dart';
 import '../../../core/widgtes/widgets.dart';
 
 class TravelerPlannerFormScreen extends StatefulWidget {
-  const TravelerPlannerFormScreen({super.key});
+  final bool isFirstTimeUser;
+
+  const TravelerPlannerFormScreen({super.key, this.isFirstTimeUser = false});
 
   @override
   State<TravelerPlannerFormScreen> createState() => _TravelerPlannerFormScreenState();
@@ -25,6 +27,7 @@ class _TravelerPlannerFormScreenState extends State<TravelerPlannerFormScreen> {
       body: CustomScrollView(
         slivers: [
           CustomSilverAppBar(
+            hasBackButton: !widget.isFirstTimeUser,
             screenHeight: screenHeight,
             title: localizations.travler_form_title,
             subtitle: localizations.travler_form_subtitle,
@@ -36,19 +39,21 @@ class _TravelerPlannerFormScreenState extends State<TravelerPlannerFormScreen> {
             ),
           ),
 
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                SizedBox(height: 24),
-                TextButton(
-                  onPressed: () {
-                    context.go(AppRoutes.home);
-                  },
-                  child: Text(localizations.travler_form_create_before),
-                ),
-              ],
+          if (widget.isFirstTimeUser) ...[
+            SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  SizedBox(height: 24),
+                  TextButton(
+                    onPressed: () {
+                      context.go(AppRoutes.home);
+                    },
+                    child: Text(localizations.travler_form_create_before),
+                  ),
+                ],
+              ),
             ),
-          ),
+          ],
         ],
       ),
     );

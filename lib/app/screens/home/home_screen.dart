@@ -18,6 +18,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final emptyList = [];
 
+  void _navigateToTravelerPlannerForm() {
+    context.push(AppRoutes.travelerPlannerForm, extra: {'isFirstTimeUser': false});
+  }
+
   @override
   Widget build(BuildContext context) {
     final double screenWidth = context.width;
@@ -48,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                       const SizedBox(height: 26),
                       CustomButton(
-                        onPressed: () => context.push(AppRoutes.travelerPlannerForm),
+                        onPressed: _navigateToTravelerPlannerForm,
                         title: localizations.home_create_new_travel,
                         isOutlined: true,
                         width: screenWidth * 0.8,

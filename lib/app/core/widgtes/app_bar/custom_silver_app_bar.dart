@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 class CustomSilverAppBar extends StatelessWidget {
   final double screenHeight;
   final String title;
+  final bool hasBackButton;
 
   final String? subtitle;
 
@@ -12,6 +13,7 @@ class CustomSilverAppBar extends StatelessWidget {
     required this.screenHeight,
     required this.title,
     this.subtitle,
+    this.hasBackButton = false,
   });
 
   @override
@@ -29,13 +31,19 @@ class CustomSilverAppBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                context.pop();
-              },
+            if (hasBackButton) ...[
+              IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  context.pop();
+                },
+              ),
+            ],
+
+            Padding(
+              padding: EdgeInsets.only(left: hasBackButton ? 0 : 12, right: 12),
+              child: Text(title, style: textTheme.bodyLarge),
             ),
-            Text(title, style: textTheme.bodyLarge),
           ],
         ),
       ),
