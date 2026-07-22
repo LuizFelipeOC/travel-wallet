@@ -1,4 +1,4 @@
-import '../../storage/local_storage_interface.dart';
+import '../../../core/storage/local_storage_interface.dart';
 
 class CheckAccessRepository {
   final ILocalStorage localStorage;

@@ -7,8 +7,8 @@ import '../../../core/constants/constants.dart';
 import '../../../di/di.dart';
 import '../../../core/extends/extends.dart';
 import '../../../routers/app_routes.dart';
-import '../controller/onboarding_controller.dart';
-import '../controller/onboarding_state.dart';
+import '../state/onboarding_controller.dart';
+import '../state/onboarding_state.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});

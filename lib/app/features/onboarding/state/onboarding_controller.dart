@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import '../../../core/data/repositories/check_access_repository.dart';
+import '../data/check_access_repository.dart';
 import 'onboarding_state.dart';
 
 class OnboardingController extends ValueNotifier<OnboardingState> {
