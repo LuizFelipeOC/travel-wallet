@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/widgtes/widgets.dart';
 import '../../../../../l10n/app_localizations.dart';
+import '../../../../di/di.dart';
+import '../state/traveler_planner_form_controller.dart';
 
 class TravelerForm extends StatefulWidget {
   const TravelerForm({super.key});
@@ -11,9 +13,7 @@ class TravelerForm extends StatefulWidget {
 }
 
 class _TravelerFormState extends State<TravelerForm> {
-  final _formKey = GlobalKey<FormState>();
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _budgetController = TextEditingController();
+  final controller = getIt.get<TravelerPlannerFormController>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,30 +21,23 @@ class _TravelerFormState extends State<TravelerForm> {
     final l10n = AppLocalizations.of(context)!;
 
     return Form(
-      key: _formKey,
+      key: controller.formKey,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           TextFormField(
             onTapOutside: (event) => FocusScope.of(context).unfocus(),
-            controller: _nameController,
+            controller: controller.nameController,
             decoration: InputDecoration(labelText: l10n.travler_form_name),
-            validator: (v) =>
-                (v == null || v.trim().isEmpty) ? '${l10n.travler_form_name} é obrigatório' : null,
+            validator: (value) => controller.requiredText(value, l10n.travler_form_name),
           ),
           const SizedBox(height: 20),
           TextFormField(
             onTapOutside: (event) => FocusScope.of(context).unfocus(),
-            controller: _budgetController,
+            controller: controller.budgetController,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             decoration: InputDecoration(labelText: l10n.travler_form_budget),
-            validator: (v) {
-              if (v == null || v.trim().isEmpty) return '${l10n.travler_form_budget} é obrigatório';
-              final text = v.replaceAll(',', '.').replaceAll('R\$', '').trim();
-              final value = double.tryParse(text);
-              if (value == null || value < 0) return '${l10n.travler_form_budget} inválido';
-              return null;
-            },
+            validator: (value) => controller.requiredCurrency(value, l10n.travler_form_budget),
           ),
           const SizedBox(height: 20),
           GestureDetector(
@@ -64,7 +57,9 @@ class _TravelerFormState extends State<TravelerForm> {
               Expanded(
                 child: CustomButton(
                   onPressed: () {
-                    FocusScope.of(context).unfocus(); // Fecha o teclado
+                    FocusScope.of(context).unfocus();
+
+                    controller.saveTravelerForm(context);
                   },
                   title: l10n.travler_form_save,
                 ),

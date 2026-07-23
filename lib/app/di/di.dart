@@ -4,11 +4,15 @@ import 'package:travel_wallet/app/features/onboarding/state/onboarding_controlle
 import '../features/onboarding/data/check_access_repository.dart';
 import '../core/storage/local_storage.dart';
 import '../core/storage/local_storage_interface.dart';
+import '../features/traveler_planner/traveler_planner_form/state/traveler_planner_form_controller.dart';
 
 GetIt getIt = GetIt.instance;
 
 void setupDependencies() {
   getIt.registerLazySingleton<ILocalStorage>(() => Localstorage());
+
   getIt.registerLazySingleton(() => CheckAccessRepository(localStorage: getIt()));
+
   getIt.registerLazySingleton(() => OnboardingController(checkAccessRepository: getIt()));
+  getIt.registerFactory(() => TravelerPlannerFormController());
 }
