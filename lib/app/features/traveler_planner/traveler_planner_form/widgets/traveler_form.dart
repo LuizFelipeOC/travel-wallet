@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/widgtes/widgets.dart';
+import '../../../../core/widgtes/custom_buttons/cusom_button.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../di/di.dart';
 import '../state/traveler_planner_form_controller.dart';
@@ -59,7 +59,7 @@ class _TravelerFormState extends State<TravelerForm> {
                   onPressed: () {
                     FocusScope.of(context).unfocus();
 
-                    controller.saveTravelerForm(context);
+                    controller.saveTravelerForm();
                   },
                   title: l10n.travler_form_save,
                 ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:travel_wallet/app/core/widgtes/widgets.dart';
 import 'package:travel_wallet/l10n/app_localizations.dart';
 
 import '../../../core/constants/constants.dart';
+import '../../../core/widgtes/app_svg/app_svg.dart';
+import '../../../core/widgtes/custom_buttons/cusom_button.dart';
+import '../../../core/widgtes/fade_in/fade_in.dart';
 import '../../../di/di.dart';
 import '../../../core/extends/extends.dart';
 import '../../../routers/app_routes.dart';

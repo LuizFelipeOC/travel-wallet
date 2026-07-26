@@ -1,6 +1,21 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 import 'traveler_planner_form_validator.dart';
+
+abstract interface class ITravelerPlannerFormState {}
+
+class TravelerPlannerFormInitial implements ITravelerPlannerFormState {}
+
+class TravelerPlannerFormLoading implements ITravelerPlannerFormState {}
+
+class TravelerPlannerFormError implements ITravelerPlannerFormState {
+  final String message;
+
+  TravelerPlannerFormError({required this.message});
+}
+
+class TravelerPlannerFormSuccess implements ITravelerPlannerFormState {}
 
 class TravelerPlannerFormController with TravelerPlannerFormValidator {
   final formKey = GlobalKey<FormState>();
@@ -18,7 +33,7 @@ class TravelerPlannerFormController with TravelerPlannerFormValidator {
     return isValid;
   }
 
-  Future<void> saveTravelerForm(BuildContext context) async {
+  Future<void> saveTravelerForm() async {
     validateForm();
   }
 

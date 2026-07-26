@@ -4,7 +4,7 @@ import 'package:travel_wallet/app/features/traveler_planner/traveler_planner_for
 
 import '../../../../l10n/app_localizations.dart';
 import '../../../core/extends/extends.dart';
-import '../../../core/widgtes/widgets.dart';
+import '../../../core/widgtes/app_bar/custom_silver_app_bar.dart';
 import '../../../routers/app_routes.dart';
 
 class TravelerPlannerFormScreen extends StatefulWidget {
