@@ -1,4 +1,6 @@
 import 'package:get_it/get_it.dart';
+import 'package:travel_wallet/app/core/database/app_database.dart';
+import 'package:travel_wallet/app/core/database/database_crud_helper.dart';
 import 'package:travel_wallet/app/features/onboarding/state/onboarding_controller.dart';
 
 import '../features/onboarding/data/check_access_repository.dart';
@@ -9,6 +11,9 @@ import '../features/traveler_planner/traveler_planner_form/data/repositories/cre
 GetIt getIt = GetIt.instance;
 
 void setupDependencies() {
+  getIt.registerLazySingleton<AppDatabase>(AppDatabase.new);
+  getIt.registerLazySingleton<DatabaseCrudHelper>(() => DatabaseCrudHelper(appDatabase: getIt()));
+
   getIt.registerLazySingleton<ILocalStorage>(() => Localstorage());
 
   getIt.registerLazySingleton<CheckAccessRepository>(
