@@ -24,14 +24,39 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final content = AnimatedSwitcher(
+      duration: const Duration(milliseconds: 220),
+      child: isLoading
+          ? Row(
+              key: const ValueKey('loading'),
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  height: 18,
+                  width: 18,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      Theme.of(context).colorScheme.onPrimary,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Text(title),
+              ],
+            )
+          : Text(title, key: const ValueKey('title')),
+    );
+
     if (isOutlined) {
       return SizedBox(
         height: height,
         width: width,
         child: OutlinedButton(
-          onPressed: isDisabled ? null : onPressed,
+          onPressed: isDisabled || isLoading ? null : onPressed,
           style: style,
-          child: Text(title),
+          child: content,
         ),
       );
     }
@@ -39,7 +64,11 @@ class CustomButton extends StatelessWidget {
     return SizedBox(
       height: height,
       width: width,
-      child: ElevatedButton(onPressed: onPressed, style: style, child: Text(title)),
+      child: ElevatedButton(
+        onPressed: isDisabled || isLoading ? null : onPressed,
+        style: style,
+        child: content,
+      ),
     );
   }
 }

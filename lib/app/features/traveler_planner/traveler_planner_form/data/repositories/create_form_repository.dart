@@ -1,8 +1,14 @@
 import 'package:travel_wallet/app/core/result/result.dart';
+import 'package:travel_wallet/app/core/database/database_crud_helper.dart';
+import 'package:travel_wallet/app/core/database/migrations/create_form_table_migration.dart';
 import 'package:travel_wallet/app/features/traveler_planner/traveler_planner_form/data/models/create_form_request.dart';
 import '../erros/traveler_planner_form_erros.dart';
 
 class CreateFormRepository {
+  final DatabaseCrudHelper databaseCrudHelper;
+
+  CreateFormRepository({required this.databaseCrudHelper});
+
   Future<Result<CreateFormRequestModel>> createTravel({
     required CreateFormRequestModel formRequest,
   }) async {
@@ -17,6 +23,11 @@ class CreateFormRepository {
     }
 
     try {
+      await databaseCrudHelper.insert(
+        tableName: CreateFormTableMigration.tableName,
+        values: Map<String, Object?>.from(formRequest.toJson()),
+      );
+
       return Success(formRequest);
     } catch (e) {
       return Failure(TravelerFormSubmissionError(message: 'An unexpected error occurred.'));
