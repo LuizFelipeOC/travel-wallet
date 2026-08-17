@@ -1,5 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 
+import 'migrations/create_expense_table_migration.dart';
 import 'migrations/create_form_table_migration.dart';
 
 class AppDatabase {
@@ -17,9 +18,19 @@ class AppDatabase {
 
     _database ??= await openDatabase(
       dbPath,
-      version: 1,
+      version: 2,
+      onConfigure: (db) async {
+        // Required for the expense -> travel cascade to be enforced.
+        await db.execute('PRAGMA foreign_keys = ON');
+      },
       onCreate: (db, version) async {
         await CreateFormTableMigration.create(db);
+        await CreateExpenseTableMigration.create(db);
+      },
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (oldVersion < 2) {
+          await CreateExpenseTableMigration.create(db);
+        }
       },
     );
 

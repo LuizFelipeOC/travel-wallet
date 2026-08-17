@@ -19,6 +19,7 @@ final class AppThemes {
     appBarTheme: appBarTheme(Brightness.light),
     textSelectionTheme: textSelectionTheme(),
     outlinedButtonTheme: outlinedButtonTheme(),
+    bottomSheetTheme: bottomSheetTheme(Brightness.light),
     colorScheme: ColorScheme.fromSeed(seedColor: AppColors.amber300, brightness: Brightness.light),
   );
 
@@ -37,6 +38,7 @@ final class AppThemes {
     appBarTheme: appBarTheme(Brightness.dark),
     textSelectionTheme: textSelectionTheme(),
     outlinedButtonTheme: outlinedButtonTheme(),
+    bottomSheetTheme: bottomSheetTheme(Brightness.dark),
     colorScheme: ColorScheme.fromSeed(seedColor: AppColors.amber300, brightness: Brightness.dark),
   );
 
@@ -180,6 +182,25 @@ final class AppThemes {
       cursorColor: AppColors.amber300,
       selectionColor: AppColors.amber300,
       selectionHandleColor: AppColors.amber300,
+    );
+  }
+
+  static BottomSheetThemeData bottomSheetTheme(Brightness brightness) {
+    final isDark = brightness == Brightness.dark;
+
+    return BottomSheetThemeData(
+      backgroundColor: isDark ? AppColors.neutral800 : Colors.white,
+      surfaceTintColor: Colors.transparent,
+      modalBackgroundColor: isDark ? AppColors.neutral800 : Colors.white,
+      dragHandleColor: isDark ? AppColors.neutral700 : AppColors.slate200,
+      dragHandleSize: const Size(40, 4),
+      showDragHandle: true,
+      elevation: 0,
+      modalElevation: 0,
+      clipBehavior: Clip.antiAlias,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+      ),
     );
   }
 

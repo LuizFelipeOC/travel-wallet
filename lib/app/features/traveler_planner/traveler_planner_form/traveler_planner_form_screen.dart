@@ -5,7 +5,10 @@ import 'package:travel_wallet/app/features/traveler_planner/traveler_planner_for
 import '../../../../l10n/app_localizations.dart';
 import '../../../core/extends/extends.dart';
 import '../../../core/widgtes/app_bar/custom_silver_app_bar.dart';
+import '../../../di/di.dart';
 import '../../../routers/app_routes.dart';
+import 'data/models/create_form_request.dart';
+import 'state/traveler_planner_form_controller.dart';
 
 class TravelerPlannerFormScreen extends StatefulWidget {
   final bool isFirstTimeUser;
@@ -16,11 +19,15 @@ class TravelerPlannerFormScreen extends StatefulWidget {
   final bool isEmbedded;
   final VoidCallback? onSaved;
 
+  /// When set, the form edits this travel instead of creating a new one.
+  final CreateFormRequestModel? travel;
+
   const TravelerPlannerFormScreen({
     super.key,
     this.isFirstTimeUser = false,
     this.isEmbedded = false,
     this.onSaved,
+    this.travel,
   });
 
   @override
@@ -28,6 +35,28 @@ class TravelerPlannerFormScreen extends StatefulWidget {
 }
 
 class _TravelerPlannerFormScreenState extends State<TravelerPlannerFormScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    final travel = widget.travel;
+
+    if (travel != null) {
+      getIt.get<TravelerPlannerFormController>().startEditing(travel);
+    }
+  }
+
+  @override
+  void dispose() {
+    // The controller is shared with the create form in the home pager, so the
+    // edited values must not leak back into it.
+    if (widget.travel != null) {
+      getIt.get<TravelerPlannerFormController>().clearForm();
+    }
+
+    super.dispose();
+  }
+
   void _onSaved() {
     if (widget.onSaved != null) {
       widget.onSaved!();
@@ -55,7 +84,9 @@ class _TravelerPlannerFormScreenState extends State<TravelerPlannerFormScreen> {
           CustomSilverAppBar(
             hasBackButton: !widget.isFirstTimeUser && !widget.isEmbedded,
             screenHeight: screenHeight,
-            title: localizations.travler_form_title,
+            title: widget.travel == null
+                ? localizations.travler_form_title
+                : localizations.travler_form_edit_title,
             subtitle: localizations.travler_form_subtitle,
           ),
           SliverToBoxAdapter(

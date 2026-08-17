@@ -5,6 +5,8 @@ import '../features/auth/presentation/recovery_password_screen.dart';
 import '../features/auth/presentation/sign_in_screen.dart';
 import '../features/auth/presentation/sign_up_screen.dart';
 import '../features/home/home_screen.dart';
+import '../features/travel_details/presentation/travel_details_screen.dart';
+import '../features/traveler_planner/traveler_planner_form/data/models/create_form_request.dart';
 import '../features/onboarding/presentation/onboarding_screen.dart';
 import '../features/traveler_planner/traveler_planner_form/traveler_planner_form_screen.dart';
 import 'app_routes.dart';
@@ -37,14 +39,22 @@ final GoRouter appRouterConfig = GoRouter(
           _fadeSlidePage(key: state.pageKey, child: const RecoveryPasswordScreen()),
     ),
     GoRoute(
+      path: AppRoutes.travelDetails,
+      pageBuilder: (context, state) => _fadeSlidePage(
+        key: state.pageKey,
+        child: TravelDetailsScreen(travel: state.extra! as CreateFormRequestModel),
+      ),
+    ),
+    GoRoute(
       path: AppRoutes.travelerPlannerForm,
       pageBuilder: (context, state) {
         final data = state.extra as Map<String, dynamic>?;
         final isFirstTimeUser = data?['isFirstTimeUser'] ?? false;
+        final travel = data?['travel'] as CreateFormRequestModel?;
 
         return _fadeSlidePage(
           key: state.pageKey,
-          child: TravelerPlannerFormScreen(isFirstTimeUser: isFirstTimeUser),
+          child: TravelerPlannerFormScreen(isFirstTimeUser: isFirstTimeUser, travel: travel),
         );
       },
     ),

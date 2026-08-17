@@ -2,6 +2,8 @@ import 'package:get_it/get_it.dart';
 import 'package:travel_wallet/app/core/database/app_database.dart';
 import 'package:travel_wallet/app/core/database/database_crud_helper.dart';
 import 'package:travel_wallet/app/features/home/state/home_controller.dart';
+import 'package:travel_wallet/app/features/travel_details/data/repositories/expense_repository.dart';
+import 'package:travel_wallet/app/features/travel_details/state/travel_details_controller.dart';
 import 'package:travel_wallet/app/features/onboarding/state/onboarding_controller.dart';
 import 'package:travel_wallet/app/features/traveler_planner/traveler_planner_form/state/traveler_planner_form_controller.dart';
 
@@ -31,6 +33,14 @@ void setupDependencies() {
   );
 
   getIt.registerLazySingleton<HomeController>(() => HomeController(createFormRepository: getIt()));
+
+  getIt.registerLazySingleton<ExpenseRepository>(
+    () => ExpenseRepository(databaseCrudHelper: getIt()),
+  );
+
+  getIt.registerFactory<TravelDetailsController>(
+    () => TravelDetailsController(expenseRepository: getIt()),
+  );
 
   getIt.registerLazySingleton<TravelerPlannerFormController>(
     () => TravelerPlannerFormController(createFormRepository: getIt()),

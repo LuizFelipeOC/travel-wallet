@@ -18,8 +18,22 @@ class TravelerPlannerFormController extends ValueNotifier<ITravelerPlannerFormSt
 
   DateTimeRange? travelPeriod;
 
+  /// Id of the travel being edited, or `null` when creating a new one.
+  String? editingId;
+
+  bool get isEditing => editingId != null;
+
   TravelerPlannerFormController({required this.createFormRepository})
     : super(TravelerPlannerFormInitial());
+
+  /// Prefills the form with an existing travel so it can be edited.
+  void startEditing(CreateFormRequestModel travel) {
+    editingId = travel.id;
+    nameController.text = travel.travelName;
+    budgetController.text = travel.budgetPlan;
+    setTravelPeriod(DateTimeRange(start: travel.startDate, end: travel.endDate));
+    setState(state: TravelerPlannerFormInitial());
+  }
 
   void setTravelPeriod(DateTimeRange range) {
     travelPeriod = range;
@@ -56,7 +70,7 @@ class TravelerPlannerFormController extends ValueNotifier<ITravelerPlannerFormSt
     }
 
     final request = CreateFormRequestModel(
-      id: DateTime.now().microsecondsSinceEpoch.toString(),
+      id: editingId ?? DateTime.now().microsecondsSinceEpoch.toString(),
       travelName: nameController.text.trim(),
       budgetPlan: budgetController.text.trim(),
       startDate: period.start,
@@ -71,6 +85,7 @@ class TravelerPlannerFormController extends ValueNotifier<ITravelerPlannerFormSt
     budgetController.clear();
     periodController.clear();
     travelPeriod = null;
+    editingId = null;
     formKey.currentState?.reset();
     setState(state: TravelerPlannerFormInitial());
   }
@@ -78,7 +93,9 @@ class TravelerPlannerFormController extends ValueNotifier<ITravelerPlannerFormSt
   Future<void> submitForm(CreateFormRequestModel formRequest) async {
     setState(state: TravelerPlannerFormLoading());
 
-    final result = await createFormRepository.createTravel(formRequest: formRequest);
+    final result = isEditing
+        ? await createFormRepository.updateTravel(formRequest: formRequest)
+        : await createFormRepository.createTravel(formRequest: formRequest);
 
     switch (result) {
       case Success(data: _):

@@ -343,6 +343,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Account'**
   String get nav_account;
+
+  /// No description provided for @details_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Trip details'**
+  String get details_title;
+
+  /// No description provided for @details_spent_of.
+  ///
+  /// In en, this message translates to:
+  /// **'{spent} of {budget}'**
+  String details_spent_of(String spent, String budget);
+
+  /// No description provided for @details_remaining.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} left'**
+  String details_remaining(String value);
+
+  /// No description provided for @details_over_budget.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} over budget'**
+  String details_over_budget(String value);
+
+  /// No description provided for @details_no_budget.
+  ///
+  /// In en, this message translates to:
+  /// **'No budget set for this trip'**
+  String get details_no_budget;
+
+  /// No description provided for @details_expenses_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Expenses'**
+  String get details_expenses_title;
+
+  /// No description provided for @details_empty_expenses.
+  ///
+  /// In en, this message translates to:
+  /// **'No expenses yet'**
+  String get details_empty_expenses;
+
+  /// No description provided for @details_empty_category.
+  ///
+  /// In en, this message translates to:
+  /// **'No expenses in this category'**
+  String get details_empty_category;
+
+  /// No description provided for @details_add_expense.
+  ///
+  /// In en, this message translates to:
+  /// **'Add expense'**
+  String get details_add_expense;
+
+  /// No description provided for @details_expense_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get details_expense_description;
+
+  /// No description provided for @details_expense_amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get details_expense_amount;
+
+  /// No description provided for @details_expense_category.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get details_expense_category;
+
+  /// No description provided for @details_expense_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get details_expense_date;
+
+  /// No description provided for @details_expense_save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save expense'**
+  String get details_expense_save;
+
+  /// No description provided for @details_expense_removed.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense removed'**
+  String get details_expense_removed;
+
+  /// No description provided for @filter_all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get filter_all;
+
+  /// No description provided for @category_lodging.
+  ///
+  /// In en, this message translates to:
+  /// **'Lodging'**
+  String get category_lodging;
+
+  /// No description provided for @category_transport.
+  ///
+  /// In en, this message translates to:
+  /// **'Transport'**
+  String get category_transport;
+
+  /// No description provided for @category_food.
+  ///
+  /// In en, this message translates to:
+  /// **'Food'**
+  String get category_food;
+
+  /// No description provided for @category_leisure.
+  ///
+  /// In en, this message translates to:
+  /// **'Leisure'**
+  String get category_leisure;
+
+  /// No description provided for @category_shopping.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping'**
+  String get category_shopping;
+
+  /// No description provided for @category_other.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get category_other;
+
+  /// No description provided for @travler_form_edit_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit trip'**
+  String get travler_form_edit_title;
+
+  /// No description provided for @details_edit_travel.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit trip'**
+  String get details_edit_travel;
+
+  /// No description provided for @details_delete_travel.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete trip'**
+  String get details_delete_travel;
+
+  /// No description provided for @details_delete_confirm_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this trip?'**
+  String get details_delete_confirm_title;
+
+  /// No description provided for @details_delete_confirm_message.
+  ///
+  /// In en, this message translates to:
+  /// **'The trip and all of its expenses will be removed. This cannot be undone.'**
+  String get details_delete_confirm_message;
+
+  /// No description provided for @details_delete_confirm_action.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get details_delete_confirm_action;
+
+  /// No description provided for @details_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get details_cancel;
+
+  /// No description provided for @details_finished_travel.
+  ///
+  /// In en, this message translates to:
+  /// **'This trip has ended, so no new expenses can be added.'**
+  String get details_finished_travel;
 }
 
 class _AppLocalizationsDelegate

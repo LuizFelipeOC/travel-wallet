@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/constants/constants.dart';
+import '../../../routers/app_routes.dart';
 import '../../traveler_planner/traveler_planner_form/data/models/create_form_request.dart';
 
 class TravelList extends StatelessWidget {
@@ -42,52 +44,56 @@ class _TravelTile extends StatelessWidget {
 
     final budget = double.tryParse(travel.budgetPlan.replaceAll(',', '.'));
 
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: isDark ? AppColors.neutral700.withValues(alpha: 0.35) : AppColors.slate50,
-        border: Border.all(color: isDark ? AppColors.neutral700 : AppColors.slate200),
-      ),
-      child: Row(
-        children: [
-          Container(
-            height: 44,
-            width: 44,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColors.amber300.withValues(alpha: 0.2),
+    return InkWell(
+      onTap: () => context.push(AppRoutes.travelDetails, extra: travel),
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: isDark ? AppColors.neutral700.withValues(alpha: 0.35) : AppColors.slate50,
+          border: Border.all(color: isDark ? AppColors.neutral700 : AppColors.slate200),
+        ),
+        child: Row(
+          children: [
+            Container(
+              height: 44,
+              width: 44,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.amber300.withValues(alpha: 0.2),
+              ),
+              child: const Icon(Icons.place_outlined),
             ),
-            child: const Icon(Icons.place_outlined),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  travel.travelName,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  '${startFormat.format(travel.startDate)} - ${endFormat.format(travel.endDate)}',
-                  style: theme.textTheme.bodyMedium?.copyWith(fontSize: 13),
-                ),
-              ],
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    travel.travelName,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    '${startFormat.format(travel.startDate)} - ${endFormat.format(travel.endDate)}',
+                    style: theme.textTheme.bodyMedium?.copyWith(fontSize: 13),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(width: 12),
-          Text(
-            budget == null ? travel.budgetPlan : currencyFormat.format(budget),
-            style: theme.textTheme.bodyMedium?.copyWith(
-              fontWeight: FontWeight.w600,
-              color: isDark ? AppColors.amber300 : AppColors.amber700,
+            const SizedBox(width: 12),
+            Text(
+              budget == null ? travel.budgetPlan : currencyFormat.format(budget),
+              style: theme.textTheme.bodyMedium?.copyWith(
+                fontWeight: FontWeight.w600,
+                color: isDark ? AppColors.amber300 : AppColors.amber700,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

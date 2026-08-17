@@ -34,6 +34,51 @@ class CreateFormRepository {
     }
   }
 
+  Future<Result<CreateFormRequestModel>> updateTravel({
+    required CreateFormRequestModel formRequest,
+  }) async {
+    if (formRequest.budgetPlan.isEmpty || formRequest.travelName.isEmpty) {
+      return Failure(
+        TravelerFormValidationError(message: 'Travel name and budget plan cannot be empty.'),
+      );
+    }
+
+    if (formRequest.startDate.isAfter(formRequest.endDate)) {
+      return Failure(TravelerFormValidationError(message: 'Start date cannot be after end date.'));
+    }
+
+    try {
+      await databaseCrudHelper.update(
+        tableName: CreateFormTableMigration.tableName,
+        values: Map<String, Object?>.from(formRequest.toJson()),
+        where: 'id = ?',
+        whereArgs: [formRequest.id],
+      );
+
+      return Success(formRequest);
+    } catch (e) {
+      return Failure(TravelerFormSubmissionError(message: 'An unexpected error occurred.'));
+    }
+  }
+
+  Future<Result<String>> deleteTravel({required String id}) async {
+    if (id.isEmpty) {
+      return Failure(TravelerFormValidationError(message: 'Travel id cannot be empty.'));
+    }
+
+    try {
+      await databaseCrudHelper.delete(
+        tableName: CreateFormTableMigration.tableName,
+        where: 'id = ?',
+        whereArgs: [id],
+      );
+
+      return Success(id);
+    } catch (e) {
+      return Failure(TravelerFormSubmissionError(message: 'An unexpected error occurred.'));
+    }
+  }
+
   Future<Result<List<CreateFormRequestModel>>> getTravels() async {
     try {
       final rows = await databaseCrudHelper.query(

@@ -136,4 +136,102 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get nav_account => 'Conta';
+
+  @override
+  String get details_title => 'Detalhes da viagem';
+
+  @override
+  String details_spent_of(String spent, String budget) {
+    return '$spent de $budget';
+  }
+
+  @override
+  String details_remaining(String value) {
+    return 'Restam $value';
+  }
+
+  @override
+  String details_over_budget(String value) {
+    return '$value acima do orçamento';
+  }
+
+  @override
+  String get details_no_budget => 'Sem orçamento definido para esta viagem';
+
+  @override
+  String get details_expenses_title => 'Lançamentos';
+
+  @override
+  String get details_empty_expenses => 'Nenhum lançamento ainda';
+
+  @override
+  String get details_empty_category => 'Nenhum lançamento nesta categoria';
+
+  @override
+  String get details_add_expense => 'Novo lançamento';
+
+  @override
+  String get details_expense_description => 'Descrição';
+
+  @override
+  String get details_expense_amount => 'Valor';
+
+  @override
+  String get details_expense_category => 'Categoria';
+
+  @override
+  String get details_expense_date => 'Data';
+
+  @override
+  String get details_expense_save => 'Salvar lançamento';
+
+  @override
+  String get details_expense_removed => 'Lançamento removido';
+
+  @override
+  String get filter_all => 'Todos';
+
+  @override
+  String get category_lodging => 'Hospedagem';
+
+  @override
+  String get category_transport => 'Transporte';
+
+  @override
+  String get category_food => 'Alimentação';
+
+  @override
+  String get category_leisure => 'Lazer';
+
+  @override
+  String get category_shopping => 'Compras';
+
+  @override
+  String get category_other => 'Outros';
+
+  @override
+  String get travler_form_edit_title => 'Editar viagem';
+
+  @override
+  String get details_edit_travel => 'Editar viagem';
+
+  @override
+  String get details_delete_travel => 'Excluir viagem';
+
+  @override
+  String get details_delete_confirm_title => 'Excluir esta viagem?';
+
+  @override
+  String get details_delete_confirm_message =>
+      'A viagem e todos os seus lançamentos serão removidos. Não dá para desfazer.';
+
+  @override
+  String get details_delete_confirm_action => 'Excluir';
+
+  @override
+  String get details_cancel => 'Cancelar';
+
+  @override
+  String get details_finished_travel =>
+      'Esta viagem já terminou, não é possível adicionar lançamentos.';
 }

@@ -135,4 +135,102 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nav_account => 'Account';
+
+  @override
+  String get details_title => 'Trip details';
+
+  @override
+  String details_spent_of(String spent, String budget) {
+    return '$spent of $budget';
+  }
+
+  @override
+  String details_remaining(String value) {
+    return '$value left';
+  }
+
+  @override
+  String details_over_budget(String value) {
+    return '$value over budget';
+  }
+
+  @override
+  String get details_no_budget => 'No budget set for this trip';
+
+  @override
+  String get details_expenses_title => 'Expenses';
+
+  @override
+  String get details_empty_expenses => 'No expenses yet';
+
+  @override
+  String get details_empty_category => 'No expenses in this category';
+
+  @override
+  String get details_add_expense => 'Add expense';
+
+  @override
+  String get details_expense_description => 'Description';
+
+  @override
+  String get details_expense_amount => 'Amount';
+
+  @override
+  String get details_expense_category => 'Category';
+
+  @override
+  String get details_expense_date => 'Date';
+
+  @override
+  String get details_expense_save => 'Save expense';
+
+  @override
+  String get details_expense_removed => 'Expense removed';
+
+  @override
+  String get filter_all => 'All';
+
+  @override
+  String get category_lodging => 'Lodging';
+
+  @override
+  String get category_transport => 'Transport';
+
+  @override
+  String get category_food => 'Food';
+
+  @override
+  String get category_leisure => 'Leisure';
+
+  @override
+  String get category_shopping => 'Shopping';
+
+  @override
+  String get category_other => 'Other';
+
+  @override
+  String get travler_form_edit_title => 'Edit trip';
+
+  @override
+  String get details_edit_travel => 'Edit trip';
+
+  @override
+  String get details_delete_travel => 'Delete trip';
+
+  @override
+  String get details_delete_confirm_title => 'Delete this trip?';
+
+  @override
+  String get details_delete_confirm_message =>
+      'The trip and all of its expenses will be removed. This cannot be undone.';
+
+  @override
+  String get details_delete_confirm_action => 'Delete';
+
+  @override
+  String get details_cancel => 'Cancel';
+
+  @override
+  String get details_finished_travel =>
+      'This trip has ended, so no new expenses can be added.';
 }

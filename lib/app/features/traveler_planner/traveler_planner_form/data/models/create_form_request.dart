@@ -13,6 +13,16 @@ class CreateFormRequestModel {
     required this.endDate,
   });
 
+  /// A travel is closed once its last day is over: no expense can be added to
+  /// it anymore.
+  bool isFinishedAt(DateTime now) {
+    final lastMoment = DateTime(endDate.year, endDate.month, endDate.day, 23, 59, 59, 999);
+
+    return now.isAfter(lastMoment);
+  }
+
+  bool get isFinished => isFinishedAt(DateTime.now());
+
   factory CreateFormRequestModel.fromJson(Map<String, Object?> json) {
     return CreateFormRequestModel(
       id: json['id'] as String,

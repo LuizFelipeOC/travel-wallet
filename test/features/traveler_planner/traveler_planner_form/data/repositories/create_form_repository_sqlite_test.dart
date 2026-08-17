@@ -82,6 +82,68 @@ void main() {
     expect(result.data.map((travel) => travel.id), ['2', '1']);
   });
 
+  test('updates an existing travel in place', () async {
+    final original = CreateFormRequestModel(
+      id: '1',
+      travelName: 'Rio de Janeiro',
+      budgetPlan: '2000',
+      startDate: DateTime(2026, 7, 26),
+      endDate: DateTime(2026, 8, 2),
+    );
+
+    await repository.createTravel(formRequest: original);
+
+    final edited = CreateFormRequestModel(
+      id: '1',
+      travelName: 'Rio de Janeiro - reprogramada',
+      budgetPlan: '3500',
+      startDate: DateTime(2026, 9, 1),
+      endDate: DateTime(2026, 9, 10),
+    );
+
+    final result = await repository.updateTravel(formRequest: edited);
+    expect(result, isA<Success<CreateFormRequestModel>>());
+
+    final travels = (await repository.getTravels() as Success<List<CreateFormRequestModel>>).data;
+
+    expect(travels, hasLength(1));
+    expect(travels.first.travelName, 'Rio de Janeiro - reprogramada');
+    expect(travels.first.budgetPlan, '3500');
+    expect(travels.first.endDate, DateTime(2026, 9, 10));
+  });
+
+  test('deletes a travel', () async {
+    await repository.createTravel(
+      formRequest: CreateFormRequestModel(
+        id: '1',
+        travelName: 'Rio de Janeiro',
+        budgetPlan: '2000',
+        startDate: DateTime(2026, 7, 26),
+        endDate: DateTime(2026, 8, 2),
+      ),
+    );
+
+    final result = await repository.deleteTravel(id: '1');
+    expect(result, isA<Success<String>>());
+
+    final travels = (await repository.getTravels() as Success<List<CreateFormRequestModel>>).data;
+    expect(travels, isEmpty);
+  });
+
+  test('rejects an edit that leaves the travel invalid', () async {
+    final result = await repository.updateTravel(
+      formRequest: CreateFormRequestModel(
+        id: '1',
+        travelName: 'Rio de Janeiro',
+        budgetPlan: '2000',
+        startDate: DateTime(2026, 9, 10),
+        endDate: DateTime(2026, 9, 1),
+      ),
+    );
+
+    expect(result, isA<Failure>());
+  });
+
   test('returns an empty list when nothing was saved yet', () async {
     final result = await repository.getTravels() as Success<List<CreateFormRequestModel>>;
 
