@@ -4,21 +4,10 @@ import '../../../../l10n/app_localizations.dart';
 import '../../../core/widgtes/custom_buttons/cusom_button.dart';
 import '../data/models/expense.dart';
 import 'category_chip.dart';
+import 'new_expense_result.dart';
+
+export 'new_expense_result.dart';
 import 'expense_category_theme.dart';
-
-class NewExpenseResult {
-  final String description;
-  final double amount;
-  final ExpenseCategory category;
-  final DateTime date;
-
-  NewExpenseResult({
-    required this.description,
-    required this.amount,
-    required this.category,
-    required this.date,
-  });
-}
 
 /// Bottom sheet used to add an expense to the trip.
 class NewExpenseSheet extends StatefulWidget {

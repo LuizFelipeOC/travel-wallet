@@ -109,15 +109,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get auth_divider => 'or';
 
   @override
-  String get auth_recovery_success =>
-      'Password updated. Sign in with your new password.';
+  String get auth_recovery_success => 'Password updated. Sign in with your new password.';
 
   @override
   String get auth_back_to_sign_in => 'Back to sign in';
 
   @override
-  String get auth_recovery_subtitle_password =>
-      'Choose a new password for your account';
+  String get auth_recovery_subtitle_password => 'Choose a new password for your account';
 
   @override
   String auth_recovery_account(String email) {
@@ -231,6 +229,5 @@ class AppLocalizationsEn extends AppLocalizations {
   String get details_cancel => 'Cancel';
 
   @override
-  String get details_finished_travel =>
-      'This trip has ended, so no new expenses can be added.';
+  String get details_finished_travel => 'This trip has ended, so no new expenses can be added.';
 }

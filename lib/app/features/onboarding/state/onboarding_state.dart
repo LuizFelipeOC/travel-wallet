@@ -1,13 +1,5 @@
-abstract class OnboardingState {}
-
-class OnboardingInitial extends OnboardingState {}
-
-class OnboardingLoading extends OnboardingState {}
-
-class OnboardingLoaded extends OnboardingState {}
-
-class OnboardingHasFirstTimeUser extends OnboardingState {
-  final bool hasFirstTimeUser;
-
-  OnboardingHasFirstTimeUser({required this.hasFirstTimeUser});
-}
+export 'states/onboarding_has_first_time_user.dart';
+export 'states/onboarding_initial.dart';
+export 'states/onboarding_loaded.dart';
+export 'states/onboarding_loading.dart';
+export 'states/onboarding_state_base.dart';

@@ -14,11 +14,11 @@ import '../../traveler_planner/traveler_planner_form/data/repositories/create_fo
 import '../state/travel_details_controller.dart';
 import '../state/travel_details_state.dart';
 import '../widgets/budget_progress.dart';
+import '../widgets/finished_travel_banner.dart';
+import 'travel_action.dart';
 import '../widgets/category_filter.dart';
 import '../widgets/expense_tile.dart';
 import '../widgets/new_expense_sheet.dart';
-
-enum _TravelAction { edit, delete }
 
 class TravelDetailsScreen extends StatefulWidget {
   final CreateFormRequestModel travel;
@@ -149,15 +149,15 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
         ),
         title: Text(_travel.travelName, style: theme.textTheme.bodyLarge),
         actions: [
-          PopupMenuButton<_TravelAction>(
+          PopupMenuButton<TravelAction>(
             icon: const Icon(Icons.more_vert),
             onSelected: (action) => switch (action) {
-              _TravelAction.edit => _editTravel(),
-              _TravelAction.delete => _deleteTravel(l10n),
+              TravelAction.edit => _editTravel(),
+              TravelAction.delete => _deleteTravel(l10n),
             },
             itemBuilder: (context) => [
               PopupMenuItem(
-                value: _TravelAction.edit,
+                value: TravelAction.edit,
                 child: Row(
                   children: [
                     const Icon(Icons.edit_outlined, size: 20),
@@ -167,7 +167,7 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
                 ),
               ),
               PopupMenuItem(
-                value: _TravelAction.delete,
+                value: TravelAction.delete,
                 child: Row(
                   children: [
                     Icon(Icons.delete_outline, size: 20, color: theme.colorScheme.error),
@@ -229,7 +229,7 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
                         BudgetProgress(state: state),
                         if (_isFinished) ...[
                           const SizedBox(height: 20),
-                          _FinishedBanner(message: l10n.details_finished_travel),
+                          FinishedTravelBanner(message: l10n.details_finished_travel),
                         ],
                       ],
                     ),
@@ -293,34 +293,6 @@ class _TravelDetailsScreenState extends State<TravelDetailsScreen> {
             ),
           );
         },
-      ),
-    );
-  }
-}
-
-class _FinishedBanner extends StatelessWidget {
-  final String message;
-
-  const _FinishedBanner({required this.message});
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
-
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: AppColors.amber300.withValues(alpha: isDark ? 0.16 : 0.14),
-        border: Border.all(color: AppColors.amber300.withValues(alpha: 0.5)),
-      ),
-      child: Row(
-        children: [
-          const Icon(Icons.lock_outline, size: 18),
-          const SizedBox(width: 10),
-          Expanded(child: Text(message, style: theme.textTheme.bodyMedium?.copyWith(fontSize: 13))),
-        ],
       ),
     );
   }

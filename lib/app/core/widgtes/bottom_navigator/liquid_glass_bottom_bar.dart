@@ -3,15 +3,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import '../../constants/constants.dart';
+import 'liquid_glass_bottom_bar_item.dart';
+import 'liquid_glass_nav_item.dart';
 
-class LiquidGlassNavItem {
-  final IconData icon;
-  final IconData selectedIcon;
-  final String label;
-
-  const LiquidGlassNavItem({required this.icon, required this.label, IconData? selectedIcon})
-    : selectedIcon = selectedIcon ?? icon;
-}
+export 'liquid_glass_nav_item.dart';
 
 /// Floating translucent navigation bar. The blur only reads as glass when the
 /// content scrolls underneath it, so the host `Scaffold` must set
@@ -29,7 +24,7 @@ class LiquidGlassBottomBar extends StatelessWidget {
   });
 
   static const double _height = 64;
-  static const double _radius = 32;
+  static const double radius = 32;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +46,7 @@ class LiquidGlassBottomBar extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
         child: DecoratedBox(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(_radius),
+            borderRadius: BorderRadius.circular(radius),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withValues(alpha: isDark ? 0.45 : 0.16),
@@ -61,13 +56,13 @@ class LiquidGlassBottomBar extends StatelessWidget {
             ],
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(_radius),
+            borderRadius: BorderRadius.circular(radius),
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 24, sigmaY: 24),
               child: Container(
                 height: _height,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(_radius),
+                  borderRadius: BorderRadius.circular(radius),
                   border: Border.all(color: borderColor, width: 1),
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
@@ -93,7 +88,7 @@ class LiquidGlassBottomBar extends StatelessWidget {
                               height: _height - 16,
                               width: itemWidth - 12,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(_radius),
+                                borderRadius: BorderRadius.circular(radius),
                                 color: AppColors.amber300.withValues(alpha: isDark ? 0.26 : 0.22),
                                 border: Border.all(
                                   color: AppColors.amber300.withValues(alpha: 0.45),
@@ -106,7 +101,7 @@ class LiquidGlassBottomBar extends StatelessWidget {
                           children: [
                             for (int index = 0; index < items.length; index++)
                               Expanded(
-                                child: _LiquidGlassBottomBarItem(
+                                child: LiquidGlassBottomBarItem(
                                   item: items[index],
                                   isSelected: index == currentIndex,
                                   onTap: () => onTap(index),
@@ -120,62 +115,6 @@ class LiquidGlassBottomBar extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _LiquidGlassBottomBarItem extends StatelessWidget {
-  final LiquidGlassNavItem item;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  const _LiquidGlassBottomBarItem({
-    required this.item,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
-    final Color idleColor = isDark ? AppColors.slate200 : AppColors.neutral700;
-    // Amber on the light amber highlight has too little contrast, so the light
-    // theme uses a darker tone for the selected item.
-    final Color selectedColor = isDark ? AppColors.amber300 : AppColors.amber700;
-    final Color color = isSelected ? selectedColor : idleColor;
-
-    return Semantics(
-      button: true,
-      selected: isSelected,
-      label: item.label,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(LiquidGlassBottomBar._radius),
-        child: AnimatedDefaultTextStyle(
-          duration: const Duration(milliseconds: 250),
-          style: TextStyle(
-            fontFamily: 'Inter18',
-            fontSize: 11,
-            height: 1.1,
-            color: color,
-            fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              AnimatedScale(
-                duration: const Duration(milliseconds: 250),
-                curve: Curves.easeOutBack,
-                scale: isSelected ? 1.1 : 1,
-                child: Icon(isSelected ? item.selectedIcon : item.icon, size: 22, color: color),
-              ),
-              const SizedBox(height: 4),
-              Text(item.label, maxLines: 1, overflow: TextOverflow.ellipsis),
-            ],
           ),
         ),
       ),

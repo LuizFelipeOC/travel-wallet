@@ -1,13 +1,5 @@
-abstract interface class ITravelerPlannerFormState {}
-
-class TravelerPlannerFormInitial implements ITravelerPlannerFormState {}
-
-class TravelerPlannerFormLoading implements ITravelerPlannerFormState {}
-
-class TravelerPlannerFormError implements ITravelerPlannerFormState {
-  final String message;
-
-  TravelerPlannerFormError({required this.message});
-}
-
-class TravelerPlannerFormSuccess implements ITravelerPlannerFormState {}
+export 'states/i_traveler_planner_form_state.dart';
+export 'states/traveler_planner_form_error.dart';
+export 'states/traveler_planner_form_initial.dart';
+export 'states/traveler_planner_form_loading.dart';
+export 'states/traveler_planner_form_success.dart';
