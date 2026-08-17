@@ -52,7 +52,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get auth_sign_in_title => 'Bem-vindo de volta';
 
   @override
-  String get auth_sign_in_subtitle => 'Entre para continuar planejando suas viagens';
+  String get auth_sign_in_subtitle =>
+      'Entre para continuar planejando suas viagens';
 
   @override
   String get auth_sign_up_title => 'Crie sua conta';
@@ -109,13 +110,15 @@ class AppLocalizationsPt extends AppLocalizations {
   String get auth_divider => 'ou';
 
   @override
-  String get auth_recovery_success => 'Senha atualizada. Entre com sua nova senha.';
+  String get auth_recovery_success =>
+      'Senha atualizada. Entre com sua nova senha.';
 
   @override
   String get auth_back_to_sign_in => 'Voltar para o login';
 
   @override
-  String get auth_recovery_subtitle_password => 'Escolha uma nova senha para sua conta';
+  String get auth_recovery_subtitle_password =>
+      'Escolha uma nova senha para sua conta';
 
   @override
   String auth_recovery_account(String email) {
