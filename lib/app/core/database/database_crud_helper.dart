@@ -17,6 +17,22 @@ class DatabaseCrudHelper {
     return (await _database).insert(tableName, values, conflictAlgorithm: conflictAlgorithm);
   }
 
+  Future<List<Map<String, Object?>>> query({
+    required String tableName,
+    String? where,
+    List<Object?>? whereArgs,
+    String? orderBy,
+    int? limit,
+  }) async {
+    return (await _database).query(
+      tableName,
+      where: where,
+      whereArgs: whereArgs,
+      orderBy: orderBy,
+      limit: limit,
+    );
+  }
+
   Future<int> update({
     required String tableName,
     required Map<String, Object?> values,

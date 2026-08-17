@@ -1,6 +1,9 @@
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
+import '../features/auth/presentation/recovery_password_screen.dart';
+import '../features/auth/presentation/sign_in_screen.dart';
+import '../features/auth/presentation/sign_up_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/onboarding/presentation/onboarding_screen.dart';
 import '../features/traveler_planner/traveler_planner_form/traveler_planner_form_screen.dart';
@@ -17,6 +20,21 @@ final GoRouter appRouterConfig = GoRouter(
       path: AppRoutes.home,
       pageBuilder: (context, state) =>
           _fadeSlidePage(key: state.pageKey, child: const HomeScreen()),
+    ),
+    GoRoute(
+      path: AppRoutes.signIn,
+      pageBuilder: (context, state) =>
+          _fadeSlidePage(key: state.pageKey, child: const SignInScreen()),
+    ),
+    GoRoute(
+      path: AppRoutes.signUp,
+      pageBuilder: (context, state) =>
+          _fadeSlidePage(key: state.pageKey, child: const SignUpScreen()),
+    ),
+    GoRoute(
+      path: AppRoutes.recoveryPassword,
+      pageBuilder: (context, state) =>
+          _fadeSlidePage(key: state.pageKey, child: const RecoveryPasswordScreen()),
     ),
     GoRoute(
       path: AppRoutes.travelerPlannerForm,

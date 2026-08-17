@@ -7,7 +7,11 @@ import '../state/traveler_planner_form_controller.dart';
 import '../state/traveler_planner_form_state.dart';
 
 class TravelerForm extends StatefulWidget {
-  const TravelerForm({super.key});
+  /// Called after the travel is persisted, so the host screen can refresh its
+  /// list or leave the form.
+  final VoidCallback? onSaved;
+
+  const TravelerForm({super.key, this.onSaved});
 
   @override
   State<TravelerForm> createState() => _TravelerFormState();
@@ -15,6 +19,46 @@ class TravelerForm extends StatefulWidget {
 
 class _TravelerFormState extends State<TravelerForm> {
   final controller = getIt.get<TravelerPlannerFormController>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller.addListener(_onStateChanged);
+  }
+
+  @override
+  void dispose() {
+    controller.removeListener(_onStateChanged);
+    controller.dispose();
+    super.dispose();
+  }
+
+  void _onStateChanged() {
+    if (controller.value is! TravelerPlannerFormSuccess || !mounted) {
+      return;
+    }
+
+    controller.clearForm();
+    widget.onSaved?.call();
+  }
+
+  Future<void> _pickPeriod() async {
+    FocusScope.of(context).unfocus();
+
+    final now = DateTime.now();
+
+    final range = await showDateRangePicker(
+      context: context,
+      firstDate: DateTime(now.year - 1),
+      lastDate: DateTime(now.year + 5),
+      initialDateRange: controller.travelPeriod,
+    );
+
+    if (range != null) {
+      setState(() => controller.setTravelPeriod(range));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,18 +91,15 @@ class _TravelerFormState extends State<TravelerForm> {
                 validator: (value) => controller.requiredCurrency(value, l10n.travler_form_budget),
               ),
               const SizedBox(height: 20),
-              GestureDetector(
-                onTap: () {},
-                child: InputDecorator(
-                  decoration: InputDecoration(labelText: l10n.travler_form_roundtrip),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(l10n.travler_form_roundtrip, style: textTheme.bodyMedium),
-                      ),
-                    ],
-                  ),
+              TextFormField(
+                controller: controller.periodController,
+                readOnly: true,
+                onTap: _pickPeriod,
+                decoration: InputDecoration(
+                  labelText: l10n.travler_form_roundtrip,
+                  suffixIcon: const Icon(Icons.calendar_today_outlined),
                 ),
+                validator: (value) => controller.requiredText(value, l10n.travler_form_roundtrip),
               ),
               const SizedBox(height: 20),
               AnimatedSwitcher(

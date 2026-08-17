@@ -14,9 +14,25 @@ class TravelerPlannerFormController extends ValueNotifier<ITravelerPlannerFormSt
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController budgetController = TextEditingController();
+  final TextEditingController periodController = TextEditingController();
+
+  DateTimeRange? travelPeriod;
 
   TravelerPlannerFormController({required this.createFormRepository})
     : super(TravelerPlannerFormInitial());
+
+  void setTravelPeriod(DateTimeRange range) {
+    travelPeriod = range;
+    periodController.text =
+        '${_formatDate(range.start)} - ${_formatDate(range.end)}';
+  }
+
+  String _formatDate(DateTime date) {
+    final day = date.day.toString().padLeft(2, '0');
+    final month = date.month.toString().padLeft(2, '0');
+
+    return '$day/$month/${date.year}';
+  }
 
   bool validateForm() {
     final isValid = formKey.currentState?.validate() ?? false;
@@ -33,15 +49,31 @@ class TravelerPlannerFormController extends ValueNotifier<ITravelerPlannerFormSt
       return;
     }
 
+    final period = travelPeriod;
+
+    if (period == null) {
+      setState(state: TravelerPlannerFormError(message: 'Select the travel period'));
+      return;
+    }
+
     final request = CreateFormRequestModel(
       id: DateTime.now().microsecondsSinceEpoch.toString(),
       travelName: nameController.text.trim(),
       budgetPlan: budgetController.text.trim(),
-      startDate: DateTime.now(),
-      endDate: DateTime.now().add(const Duration(days: 1)),
+      startDate: period.start,
+      endDate: period.end,
     );
 
     await submitForm(request);
+  }
+
+  void clearForm() {
+    nameController.clear();
+    budgetController.clear();
+    periodController.clear();
+    travelPeriod = null;
+    formKey.currentState?.reset();
+    setState(state: TravelerPlannerFormInitial());
   }
 
   Future<void> submitForm(CreateFormRequestModel formRequest) async {
@@ -71,6 +103,7 @@ class TravelerPlannerFormController extends ValueNotifier<ITravelerPlannerFormSt
   void dispose() {
     nameController.dispose();
     budgetController.dispose();
+    periodController.dispose();
     super.dispose();
   }
 

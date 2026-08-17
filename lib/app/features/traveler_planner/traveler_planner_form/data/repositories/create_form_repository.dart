@@ -33,4 +33,17 @@ class CreateFormRepository {
       return Failure(TravelerFormSubmissionError(message: 'An unexpected error occurred.'));
     }
   }
+
+  Future<Result<List<CreateFormRequestModel>>> getTravels() async {
+    try {
+      final rows = await databaseCrudHelper.query(
+        tableName: CreateFormTableMigration.tableName,
+        orderBy: 'start_date DESC',
+      );
+
+      return Success(rows.map(CreateFormRequestModel.fromJson).toList());
+    } catch (e) {
+      return Failure(TravelerFormSubmissionError(message: 'An unexpected error occurred.'));
+    }
+  }
 }

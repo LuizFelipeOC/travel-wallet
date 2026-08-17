@@ -175,6 +175,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Travel Wallet'**
   String get home_app_title;
+
+  /// No description provided for @auth_sign_in_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get auth_sign_in_title;
+
+  /// No description provided for @auth_sign_in_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to keep planning your trips'**
+  String get auth_sign_in_subtitle;
+
+  /// No description provided for @auth_sign_up_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your account'**
+  String get auth_sign_up_title;
+
+  /// No description provided for @auth_sign_up_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'It only takes a minute to get started'**
+  String get auth_sign_up_subtitle;
+
+  /// No description provided for @auth_recovery_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Recover password'**
+  String get auth_recovery_title;
+
+  /// No description provided for @auth_recovery_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set a new password for your account'**
+  String get auth_recovery_subtitle;
+
+  /// No description provided for @auth_field_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get auth_field_name;
+
+  /// No description provided for @auth_field_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get auth_field_email;
+
+  /// No description provided for @auth_field_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get auth_field_password;
+
+  /// No description provided for @auth_field_new_password.
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get auth_field_new_password;
+
+  /// No description provided for @auth_field_password_confirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password'**
+  String get auth_field_password_confirmation;
+
+  /// No description provided for @auth_sign_in_action.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get auth_sign_in_action;
+
+  /// No description provided for @auth_sign_up_action.
+  ///
+  /// In en, this message translates to:
+  /// **'Create account'**
+  String get auth_sign_up_action;
+
+  /// No description provided for @auth_recovery_verify_action.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get auth_recovery_verify_action;
+
+  /// No description provided for @auth_recovery_reset_action.
+  ///
+  /// In en, this message translates to:
+  /// **'Save new password'**
+  String get auth_recovery_reset_action;
+
+  /// No description provided for @auth_forgot_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot your password?'**
+  String get auth_forgot_password;
+
+  /// No description provided for @auth_no_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account? Sign up'**
+  String get auth_no_account;
+
+  /// No description provided for @auth_has_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? Sign in'**
+  String get auth_has_account;
+
+  /// No description provided for @auth_google_action.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get auth_google_action;
+
+  /// No description provided for @auth_divider.
+  ///
+  /// In en, this message translates to:
+  /// **'or'**
+  String get auth_divider;
+
+  /// No description provided for @auth_recovery_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Password updated. Sign in with your new password.'**
+  String get auth_recovery_success;
+
+  /// No description provided for @auth_back_to_sign_in.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to sign in'**
+  String get auth_back_to_sign_in;
+
+  /// No description provided for @auth_recovery_subtitle_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a new password for your account'**
+  String get auth_recovery_subtitle_password;
+
+  /// No description provided for @auth_recovery_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Recovering the account {email}'**
+  String auth_recovery_account(String email);
+
+  /// No description provided for @auth_continue_without_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue without an account'**
+  String get auth_continue_without_account;
+
+  /// No description provided for @nav_trips.
+  ///
+  /// In en, this message translates to:
+  /// **'Trips'**
+  String get nav_trips;
+
+  /// No description provided for @nav_new_trip.
+  ///
+  /// In en, this message translates to:
+  /// **'New trip'**
+  String get nav_new_trip;
+
+  /// No description provided for @nav_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get nav_account;
 }
 
 class _AppLocalizationsDelegate

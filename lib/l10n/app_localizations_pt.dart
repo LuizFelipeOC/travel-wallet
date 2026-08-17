@@ -47,4 +47,93 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get home_app_title => 'Carteira de Viagem';
+
+  @override
+  String get auth_sign_in_title => 'Bem-vindo de volta';
+
+  @override
+  String get auth_sign_in_subtitle =>
+      'Entre para continuar planejando suas viagens';
+
+  @override
+  String get auth_sign_up_title => 'Crie sua conta';
+
+  @override
+  String get auth_sign_up_subtitle => 'Leva menos de um minuto para começar';
+
+  @override
+  String get auth_recovery_title => 'Recuperar senha';
+
+  @override
+  String get auth_recovery_subtitle => 'Defina uma nova senha para sua conta';
+
+  @override
+  String get auth_field_name => 'Nome completo';
+
+  @override
+  String get auth_field_email => 'E-mail';
+
+  @override
+  String get auth_field_password => 'Senha';
+
+  @override
+  String get auth_field_new_password => 'Nova senha';
+
+  @override
+  String get auth_field_password_confirmation => 'Confirmar senha';
+
+  @override
+  String get auth_sign_in_action => 'Entrar';
+
+  @override
+  String get auth_sign_up_action => 'Criar conta';
+
+  @override
+  String get auth_recovery_verify_action => 'Continuar';
+
+  @override
+  String get auth_recovery_reset_action => 'Salvar nova senha';
+
+  @override
+  String get auth_forgot_password => 'Esqueceu sua senha?';
+
+  @override
+  String get auth_no_account => 'Não tem uma conta? Cadastre-se';
+
+  @override
+  String get auth_has_account => 'Já tem uma conta? Entrar';
+
+  @override
+  String get auth_google_action => 'Continuar com o Google';
+
+  @override
+  String get auth_divider => 'ou';
+
+  @override
+  String get auth_recovery_success =>
+      'Senha atualizada. Entre com sua nova senha.';
+
+  @override
+  String get auth_back_to_sign_in => 'Voltar para o login';
+
+  @override
+  String get auth_recovery_subtitle_password =>
+      'Escolha uma nova senha para sua conta';
+
+  @override
+  String auth_recovery_account(String email) {
+    return 'Recuperando a conta $email';
+  }
+
+  @override
+  String get auth_continue_without_account => 'Continuar sem conta';
+
+  @override
+  String get nav_trips => 'Viagens';
+
+  @override
+  String get nav_new_trip => 'Nova viagem';
+
+  @override
+  String get nav_account => 'Conta';
 }
