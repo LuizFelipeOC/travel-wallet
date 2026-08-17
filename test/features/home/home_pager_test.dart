@@ -21,11 +21,11 @@ void main() {
 
   setUpAll(() => registerFallbackValue(FakeCreateFormRequestModel()));
 
-  setUp(() {
+  setUp(() async {
     repository = MockCreateFormRepository();
     formController = TravelerPlannerFormController(createFormRepository: repository);
 
-    getIt.reset();
+    await getIt.reset();
     getIt.registerLazySingleton<CreateFormRepository>(() => repository);
     getIt.registerLazySingleton<HomeController>(
       () => HomeController(createFormRepository: repository),
@@ -35,7 +35,7 @@ void main() {
     getIt.registerFactory<TravelerPlannerFormController>(() => formController);
   });
 
-  tearDown(() => getIt.reset());
+  tearDown(() async => getIt.reset());
 
   Widget app() => MaterialApp(
     locale: const Locale('en'),
