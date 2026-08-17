@@ -19,11 +19,7 @@ class SignInScreen extends StatefulWidget {
   final bool isEmbedded;
   final double bottomInset;
 
-  const SignInScreen({
-    super.key,
-    this.isEmbedded = false,
-    this.bottomInset = 0,
-  });
+  const SignInScreen({super.key, this.isEmbedded = false, this.bottomInset = 0});
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
@@ -59,19 +55,12 @@ class _SignInScreenState extends State<SignInScreen> with AuthValidator {
       backgroundColor: widget.isEmbedded ? Colors.transparent : null,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.fromLTRB(
-            24,
-            0,
-            24,
-            widget.isEmbedded ? widget.bottomInset : 32,
-          ),
+          padding: EdgeInsets.fromLTRB(24, 0, 24, widget.isEmbedded ? widget.bottomInset : 32),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               AuthHeader(
-                onBack: widget.isEmbedded
-                    ? null
-                    : () => context.popOrGo(AppRoutes.home),
+                onBack: widget.isEmbedded ? null : () => context.popOrGo(AppRoutes.home),
                 title: localizations.auth_sign_in_title,
                 subtitle: localizations.auth_sign_in_subtitle,
               ),
@@ -88,10 +77,7 @@ class _SignInScreenState extends State<SignInScreen> with AuthValidator {
                         label: localizations.auth_field_email,
                         keyboardType: TextInputType.emailAddress,
                         autofillHints: const [AutofillHints.email],
-                        validator: (value) => requiredEmail(
-                          value,
-                          localizations.auth_field_email,
-                        ),
+                        validator: (value) => requiredEmail(value, localizations.auth_field_email),
                       ),
                       const SizedBox(height: 20),
                       AuthTextField(
@@ -100,35 +86,24 @@ class _SignInScreenState extends State<SignInScreen> with AuthValidator {
                         textInputAction: TextInputAction.done,
                         autofillHints: const [AutofillHints.password],
                         obscureText: _obscurePassword,
-                        onToggleObscure: () => setState(
-                          () => _obscurePassword = !_obscurePassword,
-                        ),
+                        onToggleObscure: () => setState(() => _obscurePassword = !_obscurePassword),
                         onFieldSubmitted: (_) => _onSignIn(),
-                        validator: (value) => requiredPassword(
-                          value,
-                          localizations.auth_field_password,
-                        ),
+                        validator: (value) =>
+                            requiredPassword(value, localizations.auth_field_password),
                       ),
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                          onPressed: () =>
-                              context.push(AppRoutes.recoveryPassword),
+                          onPressed: () => context.push(AppRoutes.recoveryPassword),
                           child: Text(localizations.auth_forgot_password),
                         ),
                       ),
                       const SizedBox(height: 8),
-                      CustomButton(
-                        title: localizations.auth_sign_in_action,
-                        onPressed: _onSignIn,
-                      ),
+                      CustomButton(title: localizations.auth_sign_in_action, onPressed: _onSignIn),
                       const SizedBox(height: 24),
                       AuthDivider(label: localizations.auth_divider),
                       const SizedBox(height: 24),
-                      GoogleSignInButton(
-                        title: localizations.auth_google_action,
-                        onPressed: () {},
-                      ),
+                      GoogleSignInButton(title: localizations.auth_google_action, onPressed: () {}),
                       const SizedBox(height: 16),
                       TextButton(
                         onPressed: () => context.push(AppRoutes.signUp),
@@ -137,9 +112,7 @@ class _SignInScreenState extends State<SignInScreen> with AuthValidator {
                       if (!widget.isEmbedded)
                         TextButton(
                           onPressed: () => context.popOrGo(AppRoutes.home),
-                          child: Text(
-                            localizations.auth_continue_without_account,
-                          ),
+                          child: Text(localizations.auth_continue_without_account),
                         ),
                     ],
                   ),

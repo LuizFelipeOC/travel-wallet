@@ -59,22 +59,6 @@ void main() {
     expect(find.text('Welcome back'), findsOneWidget);
   });
 
-  testWidgets('home: account tab opens sign in, which can be dismissed', (tester) async {
-    appRouterConfig.go('/home');
-    await tester.pumpWidget(app());
-    await tester.pumpAndSettle();
-
-    await tester.tap(find.byIcon(Icons.person_outline));
-    await tester.pumpAndSettle();
-    expect(find.text('Welcome back'), findsOneWidget);
-
-    await tester.ensureVisible(find.text('Continue without an account'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Continue without an account'));
-    await tester.pumpAndSettle();
-    expect(find.text('No trips yet'), findsOneWidget);
-  });
-
   testWidgets('sign up: back returns to sign in', (tester) async {
     appRouterConfig.go('/sign-in');
     await tester.pumpWidget(app());

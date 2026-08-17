@@ -30,11 +30,9 @@ void setupDependencies() {
     () => CreateFormRepository(databaseCrudHelper: getIt()),
   );
 
-  getIt.registerLazySingleton<HomeController>(
-    () => HomeController(createFormRepository: getIt()),
-  );
+  getIt.registerLazySingleton<HomeController>(() => HomeController(createFormRepository: getIt()));
 
-  getIt.registerFactory<TravelerPlannerFormController>(
+  getIt.registerLazySingleton<TravelerPlannerFormController>(
     () => TravelerPlannerFormController(createFormRepository: getIt()),
   );
 }

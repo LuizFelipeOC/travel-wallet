@@ -34,7 +34,10 @@ class _TravelTile extends StatelessWidget {
     final isDark = theme.brightness == Brightness.dark;
     final locale = Localizations.localeOf(context).toString();
 
-    final dateFormat = DateFormat.yMMMd(locale);
+    // Short start + full end ("26 de jul - 2 de ago de 2026") keeps the period
+    // on a single line.
+    final startFormat = DateFormat.MMMd(locale);
+    final endFormat = DateFormat.yMMMd(locale);
     final currencyFormat = NumberFormat.simpleCurrency(locale: locale);
 
     final budget = double.tryParse(travel.budgetPlan.replaceAll(',', '.'));
@@ -44,9 +47,7 @@ class _TravelTile extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
         color: isDark ? AppColors.neutral700.withValues(alpha: 0.35) : AppColors.slate50,
-        border: Border.all(
-          color: isDark ? AppColors.neutral700 : AppColors.slate200,
-        ),
+        border: Border.all(color: isDark ? AppColors.neutral700 : AppColors.slate200),
       ),
       child: Row(
         children: [
@@ -72,7 +73,7 @@ class _TravelTile extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  '${dateFormat.format(travel.startDate)} - ${dateFormat.format(travel.endDate)}',
+                  '${startFormat.format(travel.startDate)} - ${endFormat.format(travel.endDate)}',
                   style: theme.textTheme.bodyMedium?.copyWith(fontSize: 13),
                 ),
               ],
@@ -83,7 +84,7 @@ class _TravelTile extends StatelessWidget {
             budget == null ? travel.budgetPlan : currencyFormat.format(budget),
             style: theme.textTheme.bodyMedium?.copyWith(
               fontWeight: FontWeight.w600,
-              color: AppColors.amber700,
+              color: isDark ? AppColors.amber300 : AppColors.amber700,
             ),
           ),
         ],

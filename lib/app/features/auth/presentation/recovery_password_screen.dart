@@ -142,10 +142,7 @@ class _RecoveryPasswordScreenState extends State<RecoveryPasswordScreen> with Au
             validator: (value) => requiredEmail(value, localizations.auth_field_email),
           ),
           const SizedBox(height: 28),
-          CustomButton(
-            title: localizations.auth_recovery_verify_action,
-            onPressed: _onVerifyEmail,
-          ),
+          CustomButton(title: localizations.auth_recovery_verify_action, onPressed: _onVerifyEmail),
           const SizedBox(height: 8),
           TextButton(
             onPressed: () => context.popOrGo(AppRoutes.signIn),

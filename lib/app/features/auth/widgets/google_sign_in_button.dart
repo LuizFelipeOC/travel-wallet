@@ -58,11 +58,7 @@ class _GoogleLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 20,
-      width: 20,
-      child: CustomPaint(painter: _GoogleLogoPainter()),
-    );
+    return SizedBox(height: 20, width: 20, child: CustomPaint(painter: _GoogleLogoPainter()));
   }
 }
 

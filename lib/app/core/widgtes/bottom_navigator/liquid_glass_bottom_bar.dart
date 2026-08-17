@@ -9,11 +9,8 @@ class LiquidGlassNavItem {
   final IconData selectedIcon;
   final String label;
 
-  const LiquidGlassNavItem({
-    required this.icon,
-    required this.label,
-    IconData? selectedIcon,
-  }) : selectedIcon = selectedIcon ?? icon;
+  const LiquidGlassNavItem({required this.icon, required this.label, IconData? selectedIcon})
+    : selectedIcon = selectedIcon ?? icon;
 }
 
 /// Floating translucent navigation bar. The blur only reads as glass when the
@@ -174,11 +171,7 @@ class _LiquidGlassBottomBarItem extends StatelessWidget {
                 duration: const Duration(milliseconds: 250),
                 curve: Curves.easeOutBack,
                 scale: isSelected ? 1.1 : 1,
-                child: Icon(
-                  isSelected ? item.selectedIcon : item.icon,
-                  size: 22,
-                  color: color,
-                ),
+                child: Icon(isSelected ? item.selectedIcon : item.icon, size: 22, color: color),
               ),
               const SizedBox(height: 4),
               Text(item.label, maxLines: 1, overflow: TextOverflow.ellipsis),

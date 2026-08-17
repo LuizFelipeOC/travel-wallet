@@ -23,8 +23,7 @@ class TravelerPlannerFormController extends ValueNotifier<ITravelerPlannerFormSt
 
   void setTravelPeriod(DateTimeRange range) {
     travelPeriod = range;
-    periodController.text =
-        '${_formatDate(range.start)} - ${_formatDate(range.end)}';
+    periodController.text = '${_formatDate(range.start)} - ${_formatDate(range.end)}';
   }
 
   String _formatDate(DateTime date) {

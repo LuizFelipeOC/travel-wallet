@@ -93,7 +93,7 @@ void main() {
     expect(find.text('Planner'), findsOneWidget);
 
     // swiping works the same as tapping a tab
-    await tester.drag(find.text('Planner'), const Offset(400, 0));
+    await tester.fling(find.text('Planner'), const Offset(600, 0), 1200);
     await tester.pumpAndSettle();
     expect(find.text('No trips yet'), findsOneWidget);
   });
@@ -122,16 +122,19 @@ void main() {
       endDate: DateTime(2026, 8, 2),
     );
 
-    when(() => repository.createTravel(formRequest: any(named: 'formRequest')))
-        .thenAnswer((_) async => Success(saved));
+    when(
+      () => repository.createTravel(formRequest: any(named: 'formRequest')),
+    ).thenAnswer((_) async => Success(saved));
     when(repository.getTravels).thenAnswer((_) async => Success([saved]));
 
     await tester.tap(find.text('Save'));
     await tester.pumpAndSettle();
 
-    final request = verify(
-      () => repository.createTravel(formRequest: captureAny(named: 'formRequest')),
-    ).captured.single as CreateFormRequestModel;
+    final request =
+        verify(
+              () => repository.createTravel(formRequest: captureAny(named: 'formRequest')),
+            ).captured.single
+            as CreateFormRequestModel;
 
     expect(request.travelName, 'Rio de Janeiro');
     expect(request.budgetPlan, '2000');

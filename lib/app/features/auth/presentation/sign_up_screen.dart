@@ -83,8 +83,7 @@ class _SignUpScreenState extends State<SignUpScreen> with AuthValidator {
                         label: localizations.auth_field_email,
                         keyboardType: TextInputType.emailAddress,
                         autofillHints: const [AutofillHints.email],
-                        validator: (value) =>
-                            requiredEmail(value, localizations.auth_field_email),
+                        validator: (value) => requiredEmail(value, localizations.auth_field_email),
                       ),
                       const SizedBox(height: 20),
                       AuthTextField(
@@ -92,8 +91,7 @@ class _SignUpScreenState extends State<SignUpScreen> with AuthValidator {
                         label: localizations.auth_field_password,
                         autofillHints: const [AutofillHints.newPassword],
                         obscureText: _obscurePassword,
-                        onToggleObscure: () =>
-                            setState(() => _obscurePassword = !_obscurePassword),
+                        onToggleObscure: () => setState(() => _obscurePassword = !_obscurePassword),
                         validator: (value) =>
                             requiredPassword(value, localizations.auth_field_password),
                       ),
@@ -114,17 +112,11 @@ class _SignUpScreenState extends State<SignUpScreen> with AuthValidator {
                         ),
                       ),
                       const SizedBox(height: 28),
-                      CustomButton(
-                        title: localizations.auth_sign_up_action,
-                        onPressed: _onSignUp,
-                      ),
+                      CustomButton(title: localizations.auth_sign_up_action, onPressed: _onSignUp),
                       const SizedBox(height: 24),
                       AuthDivider(label: localizations.auth_divider),
                       const SizedBox(height: 24),
-                      GoogleSignInButton(
-                        title: localizations.auth_google_action,
-                        onPressed: () {},
-                      ),
+                      GoogleSignInButton(title: localizations.auth_google_action, onPressed: () {}),
                       const SizedBox(height: 16),
                       TextButton(
                         onPressed: () => context.popOrGo(AppRoutes.signIn),

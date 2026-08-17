@@ -29,8 +29,9 @@ class _TravelerFormState extends State<TravelerForm> {
 
   @override
   void dispose() {
+    // The controller is owned by the DI container: the pager disposes and
+    // rebuilds this page as it scrolls, and the typed values must survive that.
     controller.removeListener(_onStateChanged);
-    controller.dispose();
     super.dispose();
   }
 

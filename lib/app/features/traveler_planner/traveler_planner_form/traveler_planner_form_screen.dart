@@ -62,7 +62,10 @@ class _TravelerPlannerFormScreenState extends State<TravelerPlannerFormScreen> {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
               child: Column(
-                children: [const SizedBox(height: 8), TravelerForm(onSaved: _onSaved)],
+                children: [
+                  const SizedBox(height: 8),
+                  TravelerForm(onSaved: _onSaved),
+                ],
               ),
             ),
           ),
